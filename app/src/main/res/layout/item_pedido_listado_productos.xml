@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cabecera de tabla -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_tabla_agregar_pedidos"
+    android:paddingTop="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="5dp">
+
+        <!-- El contenedor que tenga ese background -->
+
+        <TextView
+            android:id="@+id/tv_agregar_pedidos_producto_tabler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/smallest"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border_textview_more_tiny"
+            android:paddingStart="2dp"
+            android:layout_marginStart="2dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.18"
+            android:text="@string/st_pedidos_agregar_productos"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tv_agregar_pedidos_producto2_table"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:focusable="false"
+            android:background="@drawable/ic_baseline_check_box_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto3_table"
+            app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto_tabler"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_agregar_pedidos_producto3_table"
+            android:layout_width="0dp"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_textview_more_tiny"
+            android:textSize="@dimen/smallest"
+            app:layout_constraintWidth_percent="0.18"
+            android:textColor="@color/black"
+            android:paddingStart="2dp"
+            android:layout_marginStart="2dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:gravity="center"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="@string/st_pedidos_producto_costo_dialog"
+            app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto4_table" />
+        <TextView
+            android:id="@+id/tv_agregar_pedidos_producto4_table"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/smallest"
+            android:inputType="number"
+            app:layout_constraintWidth_percent="0.18"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto5_table"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:gravity="center"
+            android:background="@drawable/border_textview_more_tiny"
+            android:paddingStart="2dp"
+            android:layout_marginStart="2dp"
+            android:paddingEnd="2dp"
+            android:layout_marginEnd="2dp"
+            android:hint="@string/st_pedidos_producto_cantidad_dialog"/>
+        <TextView
+            android:id="@+id/tv_agregar_pedidos_producto5_table"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.18"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/smallest"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border_textview_more_tiny"
+            android:paddingStart="2dp"
+            android:layout_marginStart="2dp"
+            android:paddingEnd="2dp"
+            android:layout_marginEnd="2dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto6_table"
+            android:text="0"/>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/tv_agregar_pedidos_producto6_table"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_agregar_pedidos_producto2_table"
+            app:layout_constraintWidth_percent="0.10"
+            app:layout_constraintTop_toTopOf="@+id/tv_agregar_pedidos_producto2_table"
+            android:gravity="center"
+            android:paddingStart="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/border_editext_pagar"
+            app:layout_constraintEnd_toEndOf="parent">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_pedidos_listado_add"
+                    android:layout_width="15dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="5dp"
+                    app:srcCompat="@drawable/ic_baseline_delete_24"
+                    android:tint="@color/white"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

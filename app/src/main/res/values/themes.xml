@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/gray</item>
+        <!-- Color de la toolbar -->
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
+        <!-- Stylo de torta -->
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowStyle</item>
+        <item name="android:switchStyle">@style/MyTheme.Switch</item>
+        <item name="android:listDivider">@android:color/transparent</item>
+    </style>
+    <style name="MyTheme.Switch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="colorControlActivated">@color/black</item>
+        <item name="colorControlNormal">@color/black</item>
+        <item name="colorControlHighlight">@color/black</item>
+        <item name="colorSwitchThumbNormal">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+    <!-- ICONO DE LA TORTA   -->
+    <style name="AppTheme.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <!-- Color blanco la torta -->
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="Custom.Widget.SwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch" >
+        <item name="android:textColorPrimary">@color/amber</item>  <!--textColor on activated state -->
+    </style>
+
+
+</resources>

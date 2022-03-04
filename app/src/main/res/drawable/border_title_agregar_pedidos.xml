@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- Estado Normal -->
+    <item>
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/actualizarEditext"/>
+                    <stroke android:width="1dp"
+                        android:color="@color/login_c_border_editext" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

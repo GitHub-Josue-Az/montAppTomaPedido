@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_pedidos_pagar"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- Botones superiores -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_pagar_regresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/border_editext_more_tiny">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_agregar_back"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_regresar"
+                android:paddingStart="10dp"
+                android:textSize="@dimen/normal"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_pagar_inicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_editext_more_tiny">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_agregar_home"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_home_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_inicio"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="@dimen/normal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!--  Formulario  -->
+
+        <LinearLayout
+            android:id="@+id/ln_pedidos_pagar_contenedorInicial"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ln_pedidos_pagar_inicio">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_pagar_banco"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_pagar_banco"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="5dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:layout_height="wrap_content"/>
+
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_pagar_op"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_pagar_op"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="5dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:layout_height="wrap_content"/>
+
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_pagar_monto"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_pagar_monto"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="5dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_fecha"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_pagar_fecha"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="5dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:drawableEnd="@drawable/ic_baseline_date_range_24"
+                        android:hint="@string/st_pedidos_agregar_fecha_tipe"
+                        android:layout_height="wrap_content"/>
+
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_pagar_cuenta"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_pagar_cuenta"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="5dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:layout_height="wrap_content"/>
+
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_pagar_foto"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_pedidos_pagar_foto"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_add_a_photo_24"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_pedidos_pagar_guardar"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/normal"
+                        android:background="@drawable/shape_gradiente_login_button"
+                        app:layout_constraintBottom_toTopOf="@+id/login_space_end"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/st_pagar_pedidos_guardar"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/white"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

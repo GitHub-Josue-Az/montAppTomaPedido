@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragmentLogin"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inicio_card_toma_pedidos"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
+            android:background="@drawable/border_editext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/inicio_card_revisar_gestionar"
+            app:layout_constraintEnd_toStartOf="@+id/inicio_card_ingreso_cobranzas">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_toma_pedidos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.60"
+                app:layout_constraintWidth_percent="0.60"
+                app:srcCompat="@drawable/tomadepedido" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_toma_pedidos"
+                android:text="@string/st_inicio_toma_pedido"
+                android:textSize="@dimen/tiny"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inicio_card_ingreso_cobranzas"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
+            android:background="@drawable/border_editext"
+            app:layout_constraintBottom_toTopOf="@+id/inicio_card_revisar_compras"
+            app:layout_constraintStart_toEndOf="@+id/inicio_card_toma_pedidos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_ingreso_cobranzas"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.60"
+                app:layout_constraintWidth_percent="0.60"
+                app:srcCompat="@drawable/ingresodecobranzas" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_ingreso_cobranzas"
+                android:text="@string/st_inicio_ingreso_cobranzas"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:textSize="@dimen/tiny"
+                android:gravity="center"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inicio_card_revisar_gestionar"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
+            android:background="@drawable/border_editext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inicio_card_toma_pedidos"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewMenu"
+            app:layout_constraintEnd_toStartOf="@+id/inicio_card_revisar_compras">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_revisar_gestionar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.60"
+                app:layout_constraintWidth_percent="0.60"
+                app:srcCompat="@drawable/revisarygestionar" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_revisar_gestionar"
+                android:text="@string/st_inicio_revisar_gestionar"
+                android:layout_marginStart="5dp"
+                android:textSize="@dimen/tiny"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inicio_card_revisar_compras"
+            android:layout_width="140dp"
+            android:layout_height="160dp"
+            android:background="@drawable/border_editext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inicio_card_ingreso_cobranzas"
+            app:layout_constraintStart_toEndOf="@+id/inicio_card_revisar_gestionar"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewMenu">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_revisar_compras"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.60"
+                app:layout_constraintWidth_percent="0.60"
+                app:srcCompat="@drawable/revisarlascomprasdetalladas" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_revisar_compras"
+                android:text="@string/st_inicio_revisar_compras"
+                android:layout_marginStart="5dp"
+                android:textSize="@dimen/tiny"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewMenu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintWidth_percent="0.60"
+            app:srcCompat="@drawable/logomont" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

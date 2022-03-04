@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="horizontal"
+android:id="@+id/cl_item_pedidos_listado_tabla"
+android:background="@drawable/border_tabla_agrega_clientes_dialog"
+android:paddingTop="10dp"
+android:paddingBottom="10dp"
+android:layout_marginTop="5dp"
+app:layout_constraintStart_toStartOf="parent"
+android:layout_height="wrap_content">
+
+
+<!-- El contenedor que tenga ese background -->
+<TextView
+    android:id="@+id/tv_pedidos_agregar_nombre_dialog_table"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/tiny"
+    android:textColor="@color/black"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintWidth_percent="0.60"
+    android:paddingStart="5dp"
+    android:text="@string/st_buscar_productos_title"/>
+
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ln_pedidos_agregar_stocks_dialog_table"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_nombre_dialog_table"
+    app:layout_constraintWidth_percent="0.16"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/ln_agregar_opciones_dialog_table"
+    android:text="@string/st_pedidos_agregar_opciones_dialog"
+    android:background="@drawable/border_button_cargar_productos">
+
+
+    <TextView
+        android:id="@+id/tv_pedidos_agregar_stocks_table_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tiny"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="@string/st_buscar_productos_stocks_title"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/ln_agregar_opciones_dialog_table"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@+id/ln_pedidos_agregar_stocks_dialog_table"
+    app:layout_constraintWidth_percent="0.16"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:text="@string/st_pedidos_agregar_opciones_dialog"
+    android:background="@drawable/border_button_agregar_nuevo">
+
+    <TextView
+        android:id="@+id/tv_pedidos_agregar_opciones_dialog_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tiny"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="@string/st_pedidos_agregar_cliente_dialog"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

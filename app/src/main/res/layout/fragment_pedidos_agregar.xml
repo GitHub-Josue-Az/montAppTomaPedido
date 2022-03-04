@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_pedidos_agregar"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- Botones superiores -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_agregar_regresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/border_editext_more_tiny">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_agregar_back"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_regresar"
+                android:paddingStart="10dp"
+                android:textSize="@dimen/normal"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_agregar_inicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_editext_more_tiny">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_agregar_home"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_home_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_inicio"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="@dimen/normal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!--  Formulario  -->
+
+        <LinearLayout
+            android:id="@+id/ln_pedidos_agregar_contenedorInicial"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ln_pedidos_agregar_inicio">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ln_pedidos_agregar_clientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/border_button_agregar_nuevo">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_pedidos_listado_add"
+                        android:layout_width="15dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_search_24"
+                        android:tint="@color/white"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/st_pedidos_agregar_buscar_cliente"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="@dimen/normal"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/white"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <!-- Nombre del cliente  -->
+                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                         android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_nombrecliente"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_agregar_nombrecliente"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:textSize="@dimen/normal"
+                        android:background="@drawable/border_editext_enabled"
+                        android:padding="3dp"
+                        android:text="@string/st_pedidos_agregar_nombrecliente"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Documento del cliente  -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_documentocliente"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_agregar_documentocliente"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_editext_enabled"
+                        android:padding="3dp"
+                        android:textSize="@dimen/normal"
+                        android:text="@string/st_pedidos_agregar_documentocliente"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Direcciones -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_direcciones"/>
+                    <RelativeLayout
+                        android:id="@+id/rl_pedidos_agregar_direcciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/sp_pedidos_agregar_direcciones"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_spinner"
+                            android:overlapAnchor="false"
+                            android:padding="3dp"
+                            android:spinnerMode="dropdown" />
+
+                        <RelativeLayout
+                            android:layout_width="25dp"
+                            android:layout_height="25sp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <!-- Condición de pago -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_condicion"/>
+                    <RelativeLayout
+                        android:id="@+id/rl_pedidos_agregar_condicion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/sp_pedidos_agregar_condicion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:background="@drawable/border_spinner"
+                            android:overlapAnchor="false"
+                            android:spinnerMode="dropdown" />
+
+                        <RelativeLayout
+                            android:layout_width="25dp"
+                            android:layout_height="25sp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <!-- Tipo de cliente -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_tipocliente"/>
+                    <RelativeLayout
+                        android:id="@+id/rl_pedidos_agregar_tipocliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/sp_pedidos_agregar_tipocliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:background="@drawable/border_spinner"
+                            android:overlapAnchor="false"
+                            android:spinnerMode="dropdown" />
+
+                        <RelativeLayout
+                            android:layout_width="25dp"
+                            android:layout_height="25sp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ln_pedidos_agregar_cargaproductos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/border_button_cargar_productos">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_pedidos_agregar_cargaproductos"
+                            android:layout_width="15dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/ic_baseline_cloud_upload_24"
+                            android:tint="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/st_pedidos_agregar_cargar_productos"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:textSize="@dimen/normal"
+                            android:paddingBottom="5dp"
+                            android:textColor="@color/white"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!-- Buscar -->
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_listado_buscar"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/border_search"
+                        android:inputType="text"
+                        android:layout_marginTop="20dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:paddingStart="3dp"
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
+                        android:drawablePadding="3dp"
+                        android:hint="@string/st_pedidos_listado_buscar"
+                        android:textColor="@color/black"
+                        android:drawableStart="@drawable/ic_baseline_search_24"
+                        android:drawableTint="@color/colorAccent"
+                         app:layout_constraintStart_toStartOf="parent"/>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="match_parent">
+
+                        <!-- Cabecera de tabla -->
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cabeceratabla"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border_tabla_agregar_pedidos"
+                            android:paddingTop="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:paddingBottom="5dp">
+
+                            <!-- El contenedor que tenga ese background -->
+
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/smallest"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:gravity="center"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintWidth_percent="0.18"
+                                android:text="@string/st_pedidos_agregar_productos"/>
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/smallest"
+                                android:gravity="center"
+                                app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto"
+                                android:textColor="@color/black"
+                                app:layout_constraintWidth_percent="0.18"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="@string/st_pedidos_agregar_promocion"/>
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto2"
+                                android:textSize="@dimen/smallest"
+                                app:layout_constraintWidth_percent="0.18"
+                                android:textColor="@color/black"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:text="@string/st_pedidos_agregar_costo"/>
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/smallest"
+                                app:layout_constraintWidth_percent="0.18"
+                                app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto3"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:gravity="center"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textColor="@color/black"
+                                android:text="@string/st_pedidos_agregar_cantidad"/>
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto5"
+                                android:layout_width="0dp"
+                                app:layout_constraintWidth_percent="0.18"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/smallest"
+                                app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto4"
+                                android:gravity="center"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:text="@string/st_pedidos_agregar_subtotal"/>
+                            <TextView
+                                android:id="@+id/tv_agregar_pedidos_producto6"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/smallest"
+                                android:gravity="center"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintWidth_percent="0.10"
+                                app:layout_constraintStart_toEndOf="@+id/tv_agregar_pedidos_producto5"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:textColor="@color/black"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <!-- Reciclador de datos -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_pedidos_agregar_recicler_tabl"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cabeceratabla"
+                            app:layout_constraintStart_toStartOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+                    <!-- <ListView
+                         android:id="@+id/lv_pedidos_agregar_recicler_tab"
+                         android:layout_width="match_parent"
+                         android:layout_height="200dp"
+                         app:layout_constraintTop_toBottomOf="@+id/cabeceratabla"
+                         app:layout_constraintStart_toStartOf="parent"
+                         />-->
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <!-- Total -->
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="10dp"
+                         android:textSize="@dimen/normal_tiny"
+                         android:text="@string/st_pedidos_agregar_total"/>
+                     <androidx.appcompat.widget.AppCompatEditText
+                         android:id="@+id/et_pedidos_agregar_total"
+                         android:layout_width="match_parent"
+                         android:layout_marginTop="5dp"
+                         android:background="@drawable/border_editext_enabled"
+                         android:padding="3dp"
+                         android:textSize="@dimen/normal"
+                         android:text="0"
+                         android:cursorVisible="false"
+                         android:focusable="false"
+                         android:layout_height="wrap_content"/>
+
+                    <!-- Despacho con la camioneta -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cb_pedidos_agregar_camioneta"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/normal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cb_pedidos_agregar_camioneta"
+                            android:text="@string/st_pedidos_agregar_despacho"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- Fecha de entrega -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_fecha"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_pedidos_agregar_fecha"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/border_spinner"
+                        android:padding="3dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:drawableEnd="@drawable/ic_baseline_date_range_24"
+                        android:hint="@string/st_pedidos_agregar_fecha_tipe"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Observaciones -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/normal_tiny"
+                        android:text="@string/st_pedidos_agregar_observaciones"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edit_descripcion_problema"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/border_spinner"
+                        android:textColor="@color/text_color"
+                        android:layout_marginTop="5dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_pedidos_agregar_registrar"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/normal"
+                        android:background="@drawable/shape_gradiente_login_button"
+                        app:layout_constraintBottom_toTopOf="@+id/login_space_end"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/st_agregar_pedidos_registrar"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

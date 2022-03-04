@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_pedidos_listado"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_listado_inicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/border_editext_more_tiny">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_listado_home"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_home_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_inicio"
+                android:paddingStart="10dp"
+                android:textSize="@dimen/normal"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_listado_agregar_nuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_button_agregar_nuevo">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pedidos_listado_add"
+                android:layout_width="15dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_circle_24"
+                android:tint="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pedidos_listado_agregar_nuevo"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--  recycler con buscar, sino mostrar no hay datos -->
+
+
+        <!-- Tabla -->
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_pedidos_listado_buscar"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:background="@drawable/border_search"
+            android:inputType="text"
+            android:layout_marginTop="40dp"
+            android:textSize="@dimen/normal_tiny"
+            android:paddingStart="3dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:drawablePadding="3dp"
+            android:layout_marginStart="10dp"
+            android:hint="@string/st_pedidos_listado_buscar"
+            android:textColor="@color/black"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawableTint="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@+id/ln_pedidos_listado_agregar_nuevo"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ln_pedidos_listado_tabla"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/et_pedidos_listado_buscar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp">
+
+            <!-- Cabecera de tabla -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_tabla_agregar_pedidos"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <!-- El contenedor que tenga ese background -->
+
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_producto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/smallest"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintWidth_percent="0.18"
+                    android:text="@string/st_listado_agregar_pedido"/>
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_total"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/smallest"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_producto"
+                    android:textColor="@color/black"
+                    app:layout_constraintWidth_percent="0.18"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/st_listado_agregar_total_pedido"/>
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_estado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_total"
+                    android:textSize="@dimen/smallest"
+                    app:layout_constraintWidth_percent="0.13"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/st_listado_agregar_estado"/>
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_cliente"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/smallest"
+                    app:layout_constraintWidth_percent="0.18"
+                    app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_estado"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/st_listado_agregar_cliente"/>
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_fecha"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.18"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/smallest"
+                    app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_cliente"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/st_listado_agregar_fecha"/>
+                <TextView
+                    android:id="@+id/tv_listado_pedidos_opciones"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/smallest"
+                    android:gravity="center"
+                    app:layout_constraintWidth_percent="0.15"
+                    app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_fecha"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/st_listado_agregar_opciones"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/sw_pedidos_listado_refresView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_pedidos_listado_reciclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

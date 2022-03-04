@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/cl_item_pedidos_listado_tabla"
+    android:layout_height="wrap_content">
+
+
+        <!-- El contenedor que tenga ese background -->
+        <TextView
+            android:id="@+id/tv_listado_pedidos_producto_item"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:textSize="@dimen/smallest"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listado_pedidos_total_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.17"
+            android:text="@string/st_listado_agregar_pedido"/>
+        <TextView
+            android:id="@+id/tv_listado_pedidos_total_item"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:textSize="@dimen/smallest"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listado_pedidos_estado_item"
+            app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_producto_item"
+            android:textColor="@color/black"
+            app:layout_constraintWidth_percent="0.17"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/st_listado_agregar_total_pedido"/>
+        <TextView
+            android:id="@+id/tv_listado_pedidos_estado_item"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:background="@drawable/border_editext_pendiente"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listado_pedidos_cliente_item"
+            app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_total_item"
+            android:textSize="@dimen/smallest"
+            app:layout_constraintWidth_percent="0.08"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="P"/>
+        <TextView
+            android:id="@+id/tv_listado_pedidos_cliente_item"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:textSize="@dimen/smallest"
+            app:layout_constraintWidth_percent="0.18"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listado_pedidos_fecha_item"
+            app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_estado_item"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/st_listado_agregar_cliente"/>
+        <TextView
+            android:id="@+id/tv_listado_pedidos_fecha_item"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.17"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_listado_pedidos_opciones_item"
+            android:textSize="@dimen/smallest"
+            app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_cliente_item"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/st_listado_agregar_fecha"/>
+        <TextView
+            android:id="@+id/tv_listado_pedidos_opciones_item"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:textSize="@dimen/smallest"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_listado_pedidos_fecha_item"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border_editext_pagar"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/st_listado_agregar_pagar"/>
+
+        <View
+            android:id="@+id/v_pedido_listado_divisor_item"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/actualizarEditext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.80"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_listado_pedidos_opciones_item"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

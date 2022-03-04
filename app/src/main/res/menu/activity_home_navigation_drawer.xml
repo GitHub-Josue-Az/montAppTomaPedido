@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_nav_inicio"
+            android:title="@string/st_menu_nav_inicio" />
+    </group>
+
+
+
+    <item android:title="@string/menu_nav_clientes">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_nav_clientes_agregar"
+                    android:title="@string/st_menu_nav_clientes_agrega" />
+                <item
+                    android:id="@+id/menu_nav_clientes_listado"
+                    android:title="@string/st_menu_nav_clientes_listado" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_nav_productos">
+        <menu >
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_nav_pructos_agrega"
+                    android:title="@string/st_menu_nav_pructos_agregar" />
+                <item
+                    android:id="@+id/menu_nav_pructos_listado"
+                    android:title="@string/st_menu_nav_pructos_listado" />
+            </group>
+        </menu>
+    </item>
+
+
+    <item android:title="@string/menu_nav_pedidos">
+        <menu >
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_nav_pedidos_agregar"
+                    android:title="@string/st_menu_nav_pedidos_agregar" />
+                <item
+                    android:id="@+id/menu_nav_pedidos_listado"
+                    android:title="@string/st_menu_nav_pedidos_listado" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

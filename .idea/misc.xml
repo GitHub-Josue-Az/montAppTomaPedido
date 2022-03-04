@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable-v24/border_edittext.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable-v24/circle_progress.xml" value="0.2203125" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_agregar_nuevo.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_agregar_productos_registrar.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_cargar_productos.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_dialog.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext.xml" value="0.2203125" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_cancelado.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_enabled.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_more_tiny.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_more_tiny_table.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_pagar.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_pendiente.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_registrado.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_search.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_spinner.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_tabla_agrega_clientes_dialog.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_tabla_agregar_pedidos.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_textview_more_tiny.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_title_agregar_pedidos.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/drawer_selector.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_cerrarsesion.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_agregar_pedido_registrar.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_fragments.xml" value="0.2203125" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_gradiente_login.xml" value="0.2203125" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_gradiente_login_button.xml" value="0.2203125" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_inicio_menu.xml" value="0.22" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_login.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarclientes.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos_inputs.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_clientes_agregar.xml" value="0.2" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_clientes_listado.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_inicio_menu.xml" value="0.75" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_login.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_agregar.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_listado.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_pagar.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_productos.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_productos_agregar.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_productos_listado.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_cliente.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_producto.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_productos.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_loader.xml" value="0.1693840579710145" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_pedido_listado.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_pedido_listado_productos.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/nav_header.xml" value="0.16" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/simple_spinner_dropdown_item_modify.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/simple_spinner_item_modify.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/menu/activity_home_navigation_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/Josue/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.45901639344262296" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.67" />
+      </ProjectState>
+    </option>
+  </component>
+</project>
