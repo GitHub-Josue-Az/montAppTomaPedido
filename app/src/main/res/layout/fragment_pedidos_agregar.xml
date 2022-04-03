@@ -471,7 +471,7 @@
                          android:background="@drawable/border_editext_enabled"
                          android:padding="3dp"
                          android:textSize="@dimen/normal"
-                         android:text="0"
+                         android:text="0.0"
                          android:cursorVisible="false"
                          android:focusable="false"
                          android:layout_height="wrap_content"/>

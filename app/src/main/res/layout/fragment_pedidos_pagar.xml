@@ -161,8 +161,10 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/border_spinner"
-                        android:padding="5dp"
+                        android:padding="3dp"
                         android:textSize="@dimen/normal_tiny"
+                        android:cursorVisible="false"
+                        android:focusable="false"
                         android:drawableEnd="@drawable/ic_baseline_date_range_24"
                         android:hint="@string/st_pedidos_agregar_fecha_tipe"
                         android:layout_height="wrap_content"/>
@@ -174,13 +176,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textSize="@dimen/normal_tiny"
-                        android:text="@string/st_pedidos_pagar_cuenta"/>
+                        android:text="@string/st_pedidos_agregar_observaciones"/>
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_pedidos_pagar_cuenta"
                         android:layout_width="match_parent"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/border_spinner"
-                        android:padding="5dp"
+                        android:padding="15dp"
                         android:textSize="@dimen/normal_tiny"
                         android:layout_height="wrap_content"/>
 
@@ -192,14 +194,68 @@
                         android:layout_marginTop="20dp"
                         android:textSize="@dimen/normal_tiny"
                         android:text="@string/st_pedidos_pagar_foto"/>
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_pedidos_pagar_foto"
+                    <ImageView
+                        android:id="@+id/iv_pedidos_pagar_foto_pagar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="start"
                         android:layout_marginTop="5dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@drawable/ic_baseline_add_a_photo_24"/>
+
+
+                    <RelativeLayout
+                        android:id="@+id/ln_pedidos_pagar_options_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:visibility="visible"
+                        android:layout_marginTop="10dp">
+
+
+                        <ImageView
+                            android:id="@+id/imagenprevia"
+                            android:layout_width="140dp"
+                            android:layout_height="220dp"
+                            android:src="@drawable/logomont" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ln_pedidos_pagar_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imagenprevia">
+
+                            <TextView
+                                android:id="@+id/name_image"
+                                android:layout_width="160dp"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="Nombre de imagen"
+                                android:textSize="@dimen/normal" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/ln_pedidos_pagar_deletelayou"
+                                android:layout_width="40dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:background="@drawable/border_editext_pagar"
+                                android:gravity="center"
+                                android:paddingStart="2dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintWidth_percent="0.10">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_pedidos_pagar_deletelayou"
+                                    android:layout_width="15dp"
+                                    android:layout_height="24dp"
+                                    android:tint="@color/white"
+                                    app:srcCompat="@drawable/ic_baseline_delete_24" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </RelativeLayout>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_pedidos_pagar_guardar"

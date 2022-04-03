@@ -74,6 +74,7 @@
     <color name="colorAccentEnabled">#EFAE74</color>
 
     <color name="actualizarEditext">#e9ecef</color>
+    <color name="cerrar">#6c757d</color>
 
     <color name="tabla_agregar_pedidos">#F6F7F8</color>
 
@@ -83,9 +84,10 @@
     <color name="loginOscuro">#ed6d0a</color>
     <color name="login_c_ingresar">#bbbbbb</color>
     <color name="login_c_border_editext">#828282</color>
-
-
     <color name="colorBackTextViewTable">#757474</color>
+
+    <color name="splashgracienteoscura">#F15A24</color>
+    <color name="splashgracienteclara">#FBB03B</color>
 
 
 </resources>

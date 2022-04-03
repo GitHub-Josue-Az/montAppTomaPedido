@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="60dp"
+    android:paddingBottom="60dp"
+    android:orientation="vertical"
+    android:background="@color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_dialog"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_pedidos_productos_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_buscar_productos_stocks_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/xxlarge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_pedidos_productos_stock_dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pedidos_productos_dialog_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_pedidos_productos_dialog_title"
+            app:srcCompat="@drawable/ic_baseline_close_24" />
+
+
+        <View
+            android:id="@+id/v_pedidos_productos_dialog_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pedidos_productos_dialog_title" />
+
+
+        <!-- Cabecera -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_agregar_cabecera_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_tabla_agrega_clientes_dialog"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_pedidos_productos_dialog_divider">
+
+            <!-- El contenedor que tenga ese background -->
+            <TextView
+                android:id="@+id/tv_pedidos_agregar_almacen_dialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:text="@string/st_buscar_almacen_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tiny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.22" />
+
+            <TextView
+                android:id="@+id/tv_pedidos_agregar_lote_dialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:text="@string/st_buscar_lote_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tiny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_pedidos_agregar_cantidad_dialog"
+                app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_almacen_dialog"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <TextView
+                android:id="@+id/tv_pedidos_agregar_cantidad_dialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:text="@string/st_buscar_cantidad_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tiny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_pedidos_agregar_vencimiento_dialog"
+                app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_lote_dialog"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.23" />
+
+            <TextView
+                android:id="@+id/tv_pedidos_agregar_vencimiento_dialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:text="@string/st_buscar_vencimiento_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tiny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_cantidad_dialog"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.30" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Cuerpo -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_agregar_productos_stock_reciclerView_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/rv_pedidos_agregar_cerrar_producto_stock_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_agregar_cabecera_dialog" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rv_pedidos_agregar_cerrar_producto_stock_dialog"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/border_cerrar"
+            android:text="@string/st_cerrar"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

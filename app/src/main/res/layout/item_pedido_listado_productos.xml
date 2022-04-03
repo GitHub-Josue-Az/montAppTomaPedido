@@ -5,9 +5,9 @@
     android:orientation="horizontal"
     android:layout_height="wrap_content"
     android:background="@drawable/border_tabla_agregar_pedidos"
-    android:paddingTop="5dp"
+    android:paddingTop="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="5dp">
+    android:paddingBottom="10dp">
 
         <!-- El contenedor que tenga ese background -->
 
@@ -24,6 +24,7 @@
             android:layout_marginStart="2dp"
             android:paddingEnd="2dp"
             android:paddingTop="3dp"
+            android:focusable="false"
             android:paddingBottom="3dp"
             android:layout_marginEnd="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +46,6 @@
         <TextView
             android:id="@+id/tv_agregar_pedidos_producto3_table"
             android:layout_width="0dp"
-            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:background="@drawable/border_textview_more_tiny"
             android:textSize="@dimen/smallest"
@@ -53,26 +53,28 @@
             android:textColor="@color/black"
             android:paddingStart="2dp"
             android:layout_marginStart="2dp"
+            android:focusable="false"
             android:paddingEnd="2dp"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:gravity="center"
+            android:clickable="false"
             android:layout_marginEnd="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/st_pedidos_producto_costo_dialog"
             app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto4_table" />
         <TextView
             android:id="@+id/tv_agregar_pedidos_producto4_table"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/smallest"
-            android:inputType="number"
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tv_agregar_pedidos_producto5_table"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/black"
+            android:focusable="false"
+            android:clickable="false"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:gravity="center"
@@ -80,8 +82,7 @@
             android:paddingStart="2dp"
             android:layout_marginStart="2dp"
             android:paddingEnd="2dp"
-            android:layout_marginEnd="2dp"
-            android:hint="@string/st_pedidos_producto_cantidad_dialog"/>
+            android:layout_marginEnd="2dp"/>
         <TextView
             android:id="@+id/tv_agregar_pedidos_producto5_table"
             android:layout_width="0dp"
@@ -89,6 +90,9 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/smallest"
             android:textColor="@color/black"
+            android:minLines="1"
+            android:clickable="false"
+            android:focusable="false"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/border_textview_more_tiny"
             android:paddingStart="2dp"
@@ -119,7 +123,6 @@
                     android:id="@+id/iv_pedidos_listado_add"
                     android:layout_width="15dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="5dp"
                     app:srcCompat="@drawable/ic_baseline_delete_24"
                     android:tint="@color/white"/>
         </androidx.appcompat.widget.LinearLayoutCompat>

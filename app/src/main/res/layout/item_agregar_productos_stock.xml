@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border_tabla_agrega_clientes_dialog"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <!-- El contenedor que tenga ese background -->
+        <TextView
+            android:id="@+id/tv_pedidos_agregar_almacen_recycler_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@string/st_buscar_almacen_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.22" />
+
+        <TextView
+            android:id="@+id/tv_pedidos_agregar_lote_recycler_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@string/st_buscar_lote_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_pedidos_agregar_cantidad_recycler_dialog"
+            app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_almacen_recycler_dialog"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.25" />
+
+        <TextView
+            android:id="@+id/tv_pedidos_agregar_cantidad_recycler_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@string/st_buscar_cantidad_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_pedidos_agregar_vencimiento_recycler_dialog"
+            app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_lote_recycler_dialog"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <TextView
+            android:id="@+id/tv_pedidos_agregar_vencimiento_recycler_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@string/st_buscar_vencimiento_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_pedidos_agregar_cantidad_recycler_dialog"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.30" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+

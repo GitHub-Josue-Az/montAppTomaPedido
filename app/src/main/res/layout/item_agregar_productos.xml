@@ -39,7 +39,6 @@ android:layout_height="wrap_content">
     android:text="@string/st_pedidos_agregar_opciones_dialog"
     android:background="@drawable/border_button_cargar_productos">
 
-
     <TextView
         android:id="@+id/tv_pedidos_agregar_stocks_table_dialog"
         android:layout_width="match_parent"

@@ -9,6 +9,7 @@
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_agregar_nuevo.xml" value="0.146875" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_agregar_productos_registrar.xml" value="0.4130859375" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_button_cargar_productos.xml" value="0.4130859375" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_cerrar.xml" value="0.4953161592505855" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_dialog.xml" value="0.4953161592505855" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext.xml" value="0.2203125" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_editext_cancelado.xml" value="0.4130859375" />
@@ -26,37 +27,53 @@
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/border_title_agregar_pedidos.xml" value="0.4130859375" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/drawer_selector.xml" value="0.146875" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_baseline_check_box_24.xml" value="0.4859484777517564" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.4953161592505855" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_cerrarsesion.xml" value="0.146875" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_image_icono_app_background.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_image_icono_app_foreground.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/menu_toolbar.xml" value="0.4953161592505855" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_agregar_pedido_registrar.xml" value="0.4130859375" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_fragments.xml" value="0.2203125" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_gradiente_login.xml" value="0.2203125" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/shape_gradiente_login_button.xml" value="0.2203125" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_inicio_menu.xml" value="0.22" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/drawable/splash_gradiente_fondo.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_inicio_menu.xml" value="0.5" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_login.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarclientes.xml" value="0.67" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarclientes.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos.xml" value="0.5" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos_inputs.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/dialog_agregarproductos_stock.xml" value="0.5" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_clientes_agregar.xml" value="0.2" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_clientes_listado.xml" value="0.1361111111111111" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_inicio_menu.xml" value="0.75" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_login.xml" value="0.67" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_agregar.xml" value="0.5" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_listado.xml" value="0.67" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_pagar.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_agregar.xml" value="0.67" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_listado.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_pagar.xml" value="0.33" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_pedidos_productos.xml" value="0.1361111111111111" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_productos_agregar.xml" value="0.1361111111111111" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/fragment_productos_listado.xml" value="0.1361111111111111" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_cliente.xml" value="0.67" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_producto.xml" value="0.45901639344262296" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_productos.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_agregar_productos_stock.xml" value="0.5" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_carga_recycler.xml" value="0.45901639344262296" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_loader.xml" value="0.1693840579710145" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_pedido_listado.xml" value="0.67" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/item_pedido_listado_productos.xml" value="0.67" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/nav_header.xml" value="0.16" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/itemcarga.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/nav_header.xml" value="0.5" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/simple_spinner_dropdown_item_modify.xml" value="0.45901639344262296" />
         <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/layout/simple_spinner_item_modify.xml" value="0.45901639344262296" />
-        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/menu/activity_home_navigation_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/menu/activity_home_navigation_drawer.xml" value="1.0" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/menu/menu_toolbar.xml" value="0.45901639344262296" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/mipmap-anydpi-v26/ic_image_icono_app.xml" value="0.4953161592505855" />
+        <entry key="..\:/Users/Josue/AndroidStudioProjects/ProyectoMontPedidosInicial/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4953161592505855" />
         <entry key="..\:/Users/Josue/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.45901639344262296" />
         <entry key="..\:/Users/Josue/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.45901639344262296" />
       </map>
@@ -71,7 +88,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.67" />
+        <option name="scale" value="0.5" />
       </ProjectState>
     </option>
   </component>
