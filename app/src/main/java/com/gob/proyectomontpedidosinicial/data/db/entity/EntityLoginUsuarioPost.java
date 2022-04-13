@@ -1,21 +1,50 @@
-package com.gob.proyectomontpedidosinicial.data.entities;
+package com.gob.proyectomontpedidosinicial.data.db.entity;
+
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.gob.proyectomontpedidosinicial.data.constans.Constans;
 
 import java.io.Serializable;
 
-public class LoginUsuarioPost implements Serializable {
+@Entity(tableName = Constans.NAME_TABLE_ENTITY_USUARIO_POST)
+public class EntityLoginUsuarioPost implements Serializable {
 
-
+    @PrimaryKey(autoGenerate = true)
+    private int loginusuariouid;
+    @ColumnInfo(name = "almacen")
     private String almacen;
+    @ColumnInfo(name = "tipo_usuario_id_tipo_usuario")
     private String tipo_usuario_id_tipo_usuario;
+    @ColumnInfo(name = "unique_id")
     private String unique_id;
+    @ColumnInfo(name = "correo_usuario")
     private String correo_usuario;
+    @ColumnInfo(name = "codigo_vendedor")
     private String codigo_vendedor;
+    @ColumnInfo(name = "fecha_clave")
     private String fecha_clave;
+    @ColumnInfo(name = "estado_usuario")
     private String estado_usuario;
+    @ColumnInfo(name = "clave_usuario")
     private String clave_usuario;
+    @ColumnInfo(name = "usuario_usuario")
     private String usuario_usuario;
+    @ColumnInfo(name = "nombre_usuario")
     private String nombre_usuario;
+    @ColumnInfo(name = "id_usuario")
     private String id_usuario;
+
+
+    public int getLoginusuariouid() {
+        return loginusuariouid;
+    }
+
+    public void setLoginusuariouid(int loginusuariouid) {
+        this.loginusuariouid = loginusuariouid;
+    }
 
     public String getAlmacen() {
         return almacen;
@@ -105,22 +134,5 @@ public class LoginUsuarioPost implements Serializable {
         this.id_usuario = id_usuario;
     }
 
-
-    @Override
-    public String toString() {
-        return "LoginUsuarioPost{" +
-                "almacen='" + almacen + '\'' +
-                ", tipo_usuario_id_tipo_usuario='" + tipo_usuario_id_tipo_usuario + '\'' +
-                ", unique_id='" + unique_id + '\'' +
-                ", correo_usuario='" + correo_usuario + '\'' +
-                ", codigo_vendedor='" + codigo_vendedor + '\'' +
-                ", fecha_clave='" + fecha_clave + '\'' +
-                ", estado_usuario='" + estado_usuario + '\'' +
-                ", clave_usuario='" + clave_usuario + '\'' +
-                ", usuario_usuario='" + usuario_usuario + '\'' +
-                ", nombre_usuario='" + nombre_usuario + '\'' +
-                ", id_usuario='" + id_usuario + '\'' +
-                '}';
-    }
 
 }

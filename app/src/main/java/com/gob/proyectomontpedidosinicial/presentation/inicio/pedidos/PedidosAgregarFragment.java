@@ -35,6 +35,7 @@ import com.gob.proyectomontpedidosinicial.data.db.database.AppDb;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCondicionDePago;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityDireccionCliente;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityTipoDeCliente;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
 import com.gob.proyectomontpedidosinicial.data.entities.CondicionDePago;
@@ -282,7 +283,7 @@ public class PedidosAgregarFragment extends BaseFragment
         mPresenter.getListaDireccion()*/;
 
         /* LISTADO DE PRODUCTOS AGREGADOS, SI NO SE AGREGARON NO APARECEN  */
-        pedidosAgregarProductosAdapter = new PedidosAgregarProductosAdapter(new ArrayList<ProductoPorUsuario>(),getContext(), this);
+        pedidosAgregarProductosAdapter = new PedidosAgregarProductosAdapter(new ArrayList<EntityProductoPorUsuario>(),getContext(), this);
         mlinearLayoutManager = new LinearLayoutManager(getContext());
         mlinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvAgregarRec.setLayoutManager(mlinearLayoutManager);
@@ -368,28 +369,35 @@ public class PedidosAgregarFragment extends BaseFragment
 
     /*  TABLA  */
     @Override
-    public void agregarProductos(ProductoPorUsuario listaDeProductos) {
+    public void agregarProductos(EntityProductoPorUsuario listaDeProductos) {
 
-        ProductoPorUsuario produ = new ProductoPorUsuario();
+        EntityProductoPorUsuario produ = new EntityProductoPorUsuario();
         produ.setNombre_corto(listaDeProductos.getNombre_corto());
         produ.setId_producto(listaDeProductos.getId_producto());
         pedidosAgregarProductosAdapter.addItem(produ);
         lnAgregarCargarProductos.setEnabled(true);
     }
-    @Override
-    public void deleteItemFile(int position, BigDecimal subtotalDesc) {
 
-        if (!subtotalDesc.equals(subtotalcero) && !subtotalDesc.equals(subtotalceroo)){
-            subtotalGeneral = subtotalGeneral.subtract(subtotalDesc);
+
+    @Override
+    public void deleteItemFile(int position, String subtotalDesc) {
+
+        BigDecimal big = new BigDecimal(subtotalDesc);
+
+        if (!(subtotalDesc == "0")){
+            subtotalGeneral = subtotalGeneral.subtract(big);
             etAgregarTotal.setText(String.valueOf(subtotalGeneral));
         }
         pedidosAgregarProductosAdapter.deleteItem(position);
     }
     @Override
-    public void guardarItemFile(BigDecimal guardaProducto) {
+    public void guardarItemFile(String guardaProducto,String subtota) {
 
-        if (!guardaProducto.equals(subtotalcero) && !guardaProducto.equals(subtotalceroo)){
-            subtotalGeneral = subtotalGeneral.add(guardaProducto);
+        if (!(guardaProducto == "0")){
+            BigDecimal subtotal = new BigDecimal(guardaProducto);
+            BigDecimal subto = new BigDecimal(subtota);
+            subtotalGeneral = subtotalGeneral.subtract(subto);
+            subtotalGeneral = subtotalGeneral.add(subtotal);
             etAgregarTotal.setText(String.valueOf(subtotalGeneral));
         }
     }

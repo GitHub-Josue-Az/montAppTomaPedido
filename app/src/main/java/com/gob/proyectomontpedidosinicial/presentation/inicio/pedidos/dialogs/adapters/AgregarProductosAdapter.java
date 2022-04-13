@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.LoaderAdapter;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
 import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
@@ -23,15 +24,15 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> {
+public class AgregarProductosAdapter extends LoaderAdapter<EntityProductoPorUsuario> {
 
 
     private Context context;
     private SessionManager sessionManager;
     private AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto;
-    private ProductoPorUsuario listaDeProductos;
+    private EntityProductoPorUsuario listaDeProductos;
 
-    public AgregarProductosAdapter(ArrayList<ProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto) {
+    public AgregarProductosAdapter(ArrayList<EntityProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto) {
         super(context);
         setItems(listaDeProductos);
         this.context = context;
@@ -39,8 +40,8 @@ public class AgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> {
         this.adapterInterfaceAgregarProducto = adapterInterfaceAgregarProducto;
     }
 
-    public ArrayList<ProductoPorUsuario> getItems() {
-        return (ArrayList<ProductoPorUsuario>) getmItems();
+    public ArrayList<EntityProductoPorUsuario> getItems() {
+        return (ArrayList<EntityProductoPorUsuario>) getmItems();
     }
 
 
@@ -63,7 +64,7 @@ public class AgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> {
         /* Para que no se recicle  */
         holder.setIsRecyclable(false);
 
-        ProductoPorUsuario listaDeProductos = getItems().get(posi);
+        EntityProductoPorUsuario listaDeProductos = getItems().get(posi);
         (((ViewHolder) holder).tvAgregarNombreDialog).setText(listaDeProductos.getNombre_corto());
 
         ((ViewHolder) holder).lnAgregarStocks.setOnClickListener(new View.OnClickListener() {

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.LoaderAdapter;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
 import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
@@ -29,20 +30,22 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> implements  OnClickListListener, PopUpAgregarProductosTableInterface {
+public class PedidosAgregarProductosAdapter extends LoaderAdapter<EntityProductoPorUsuario> implements  OnClickListListener, PopUpAgregarProductosTableInterface {
 
     private Context context;
     private SessionManager sessionManager;
     private  AdapterInterfaceProductos adapterInterfaceProductos;
-    private ProductoPorUsuario listaDeProductos;
+    private EntityProductoPorUsuario listaDeProductos;
     private PopUpAgregarProductosTableDialog showPopUpAgregarProductosTableDialog;
     /*HashMap<Integer, ViewHolder> holderlist;*/
     /*private int pos;*/
     private BigDecimal inic;
 
+    private EntityProductoPorUsuario producto;
+
     private RecyclerView.ViewHolder viewHolderPreferences;
 
-    public PedidosAgregarProductosAdapter(ArrayList<ProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceProductos adapterInterfaceProductoss) {
+    public PedidosAgregarProductosAdapter(ArrayList<EntityProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceProductos adapterInterfaceProductoss) {
         super(context);
         setItems(listaDeProductos);
         this.context = context;
@@ -51,8 +54,8 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsu
         this.adapterInterfaceProductos = adapterInterfaceProductoss;
     }
 
-    public ArrayList<ProductoPorUsuario> getItems() {
-        return (ArrayList<ProductoPorUsuario>) getmItems();
+    public ArrayList<EntityProductoPorUsuario> getItems() {
+        return (ArrayList<EntityProductoPorUsuario>) getmItems();
     }
 
     @Override
@@ -76,7 +79,7 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsu
 
         holder.setIsRecyclable(false);
 
-        ProductoPorUsuario listaproducts = getItems().get(posi);
+        EntityProductoPorUsuario listaproducts = getItems().get(posi);
         (((ViewHolder) holder).tvAgregarProductoTable).setText(listaproducts.getNombre_corto());
         (((ViewHolder) holder).tvAgregarCosto).setText(String.valueOf(listaproducts.getCosto()));
         (((ViewHolder) holder).tvAgregarCantidad).setText(String.valueOf(listaproducts.getCantidad()));
@@ -84,8 +87,8 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsu
         if (!(listaproducts.getSubtotal() == null)){
              (((ViewHolder) holder).tvAgregarSubtotal).setText(String.valueOf(listaproducts.getSubtotal()));
             }else {
-            inic= new BigDecimal("0");
-            listaproducts.setSubtotal(inic);
+            /*inic= new BigDecimal("0");*/
+            listaproducts.setSubtotal("0");
             (((ViewHolder) holder).tvAgregarSubtotal).setText("0");
         }
 
@@ -129,7 +132,11 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsu
         /* Pasar la informacion actual de ese listproducto para que lo vea o lo modifique */
 
         /* Pasar la posicion */
-        ProductoPorUsuario producto = getItems().get(position);
+        producto = getItems().get(position);
+
+        /* Mandar el Subtotal al main para que reste */
+
+
         showPopUpAgregarProductosTableDialog = new PopUpAgregarProductosTableDialog(context, this,producto,position);
         showPopUpAgregarProductosTableDialog.show();
         showPopUpAgregarProductosTableDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -144,13 +151,14 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsu
         showPopUpAgregarProductosTableDialog.dismiss();
     }
 
+    /* Esto viene del pop up table dialog */
     @Override
-    public void guardarProductoListaDeProductos(ProductoPorUsuario listaDeProductos,int position) {
+    public void guardarProductoListaDeProductos(EntityProductoPorUsuario listaDeProductos, int position) {
 
         /*   Midifcar el listado y refrescar  */
         /*ListaDeProductos pro =  getItems().get(position);*/
         getItems().set(position,listaDeProductos);
-        adapterInterfaceProductos.guardarItemFile(listaDeProductos.getSubtotal());
+        adapterInterfaceProductos.guardarItemFile(listaDeProductos.getSubtotal(),producto.getSubtotal());
         /* getItems().get(position).setPromocion(listaDeProductos.getPromocion());
          getItems().get(position).setCantidad(listaDeProductos.getCantidad());
          getItems().get(position).setCosto(listaDeProductos.getCosto());

@@ -3,6 +3,7 @@ package com.gob.proyectomontpedidosinicial.data.remote.request;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCondicionDePago;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityDireccionCliente;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityTipoDeCliente;
 import com.gob.proyectomontpedidosinicial.data.entities.APIListaProductosPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.APIObjectGet;
@@ -28,7 +29,7 @@ public interface RequestPedidos {
 
     @FormUrlEncoded
     @POST("producto")
-    Call<APIListaProductosPorUsuario<ProductoPorUsuario>> getDataProductos(@Field("usuario") String usuario);
+    Call<APIListaProductosPorUsuario<EntityProductoPorUsuario>> getDataProductos(@Field("usuario") String usuario);
 
     @FormUrlEncoded
     @POST("condicionpago")

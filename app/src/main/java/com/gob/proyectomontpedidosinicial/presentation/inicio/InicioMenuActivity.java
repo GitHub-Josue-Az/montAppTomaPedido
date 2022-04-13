@@ -8,6 +8,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.BaseActivity;
 import com.gob.proyectomontpedidosinicial.core.BaseFragment;
+import com.gob.proyectomontpedidosinicial.data.db.database.AppDb;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.clientes.ClientesAgregarFragment;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.clientes.ClientesListadoFragment;
@@ -27,11 +30,15 @@ import com.gob.proyectomontpedidosinicial.presentation.inicio.menu.MenuInicioFra
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.PedidosAgregarFragment;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.PedidosListadoFragment;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.PedidosPago.PedidosPagarFragment;
+import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.PopUpAgregarProductosDialog;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.productos.ProductosAgregarFragment;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.productos.ProductosListadoFragment;
 import com.gob.proyectomontpedidosinicial.presentation.login.BaseCredencialesActivity;
 import com.gob.proyectomontpedidosinicial.utils.ActivityUtils;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -101,6 +108,15 @@ public class InicioMenuActivity extends BaseActivity
     FrameLayout frameLayoutBind;
 
     private SessionManager mSessionManager;
+
+
+    /* ASYNC */
+    /*private LeerListaDeProductostask leerListaDeProductostask;*/
+    private List<EntityProductoPorUsuario> entityProductoPorUsuariosList;
+
+    private static final int TIPO_INSERT = 2;
+    private static final int TIPO_UPDATE = 3;
+    private static final int TIPO_NINGUNO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -387,6 +403,35 @@ public class InicioMenuActivity extends BaseActivity
     public void onDrawerClosed(@NonNull View drawerView) {}
     @Override
     public void onDrawerStateChanged(int newState) {}
+
+
+    /* ASYNC */
+    /*private class LeerListaDeProductostask extends AsyncTask<Void, Void, List<EntityProductoPorUsuario>> {
+
+        @Override
+        protected List<EntityProductoPorUsuario> doInBackground(Void... voids) {
+            entityProductoPorUsuariosList = AppDb.getAppDb(getApplicationContext()).productoDAO().findAllProductos();
+            return entityProductoPorUsuariosList;
+        }
+        @Override
+        protected void onPostExecute(List<EntityProductoPorUsuario> entityProductoPorUsuarios){
+            *//*verificarInformacionProdu(entityProductoPorUsuarios);*//*
+        }
+    }*/
+
+    /*public void verificarInformacionProdu(List<EntityProductoPorUsuario> entityProductoPorUsuarios){
+
+        if (entityProductoPorUsuarios != null){
+            if (entityProductoPorUsuarios.size() >0 && !entityProductoPorUsuarios.isEmpty()){
+                ArrayList<EntityProductoPorUsuario> entityListaDeProductosArray = (ArrayList<EntityProductoPorUsuario>) entityProductoPorUsuarios;
+                listaProductos(entityListaDeProductosArray,TIPO_NINGUNO);
+            }else{
+                mPresenter.getListaProductos(TIPO_INSERT);
+            }
+        }else{
+            mPresenter.getListaProductos(TIPO_INSERT);
+        }
+    }*/
 
 
 

@@ -3,7 +3,9 @@ package com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.APIErrorNuevo;
 import com.gob.proyectomontpedidosinicial.data.entities.APIListaProductosPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
@@ -41,26 +43,28 @@ public class PopUpAgregarProductosPresenter implements PopUpAgregarProductosCont
     }*/
 
     @Override
-    public void getListaProductos() {
+    public void getListaProductos(int tipo) {
 
         mView.setLoadingIndicator(true);
 
         RequestPedidos requestpedidos = ServiceFactory.createServiceNuevo(RequestPedidos.class);
         /* Traer del preference el usuario -> codigo_vendedor */
         String usuario = mSessionManager.getUserObjectEntity().getUsuario_usuario();
-        Call<APIListaProductosPorUsuario<ProductoPorUsuario>> orders = requestpedidos.getDataProductos(usuario);
+        Toast.makeText(context, "Usuario "+usuario, Toast.LENGTH_SHORT).show();
 
-        orders.enqueue(new Callback<APIListaProductosPorUsuario<ProductoPorUsuario>>() {
+        Call<APIListaProductosPorUsuario<EntityProductoPorUsuario>> orders = requestpedidos.getDataProductos(usuario);
+
+        orders.enqueue(new Callback<APIListaProductosPorUsuario<EntityProductoPorUsuario>>() {
             @Override
-            public void onResponse(Call<APIListaProductosPorUsuario<ProductoPorUsuario>> call, Response<APIListaProductosPorUsuario<ProductoPorUsuario>> response) {
+            public void onResponse(Call<APIListaProductosPorUsuario<EntityProductoPorUsuario>> call, Response<APIListaProductosPorUsuario<EntityProductoPorUsuario>> response) {
 
                 if (response.isSuccessful()) {
                     /* Llamar api error aqui, hacer verificación de codigos */
-                    APIListaProductosPorUsuario<ProductoPorUsuario> usuariocrede= response.body();
+                    APIListaProductosPorUsuario<EntityProductoPorUsuario> usuariocrede= response.body();
                     Log.d("DATOS DE USUARIO",usuariocrede.toString());
                     if (usuariocrede.getCode() == 200){
 
-                        mView.listaProductos(usuariocrede.getData());
+                        mView.listaProductos(usuariocrede.getData(),tipo);
                         /* Aqui debo llamar a mi ROOM para ponerlo meterlo ahi */
 
                         /*mView.setLoadingIndicator(false);*/
@@ -93,7 +97,7 @@ public class PopUpAgregarProductosPresenter implements PopUpAgregarProductosCont
             }
 
             @Override
-            public void onFailure(Call<APIListaProductosPorUsuario<ProductoPorUsuario>> call, Throwable t) {
+            public void onFailure(Call<APIListaProductosPorUsuario<EntityProductoPorUsuario>> call, Throwable t) {
                 mView.setLoadingIndicator(false);
                 mView.showErrorMessage("Error al conectar con el servidor");
             }

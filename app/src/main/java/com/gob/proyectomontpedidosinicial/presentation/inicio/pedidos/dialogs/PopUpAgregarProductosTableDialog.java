@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gob.proyectomontpedidosinicial.R;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
 import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.adapters.PedidosAgregarProductosAdapter;
@@ -48,7 +49,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
     private BigDecimal subtotal;
     private int posicion;
 
-    public PopUpAgregarProductosTableDialog(Context context, PopUpAgregarProductosTableInterface popUpAgregarProductosTableInterface, ProductoPorUsuario producto, int position) {
+    public PopUpAgregarProductosTableDialog(Context context, PopUpAgregarProductosTableInterface popUpAgregarProductosTableInterface, EntityProductoPorUsuario producto, int position) {
         super(context);
         this.mPopUpAgregarProductosTableInterface = popUpAgregarProductosTableInterface;
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -58,7 +59,6 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
         mContext = context;
         posicion  = position;
         tvProductoDialog.setText(producto.getNombre_corto());
-        etProductoSubtotal.setText("0");
 
           /* Verificar si tienen data y si arrojan error  */
            if (!(producto.getPromocion() == null)){
@@ -126,12 +126,12 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
         switch (view.getId()) {
             case R.id.btn_pedidos_agregar_guardar:
 
-                ProductoPorUsuario listaDeProductos = new ProductoPorUsuario();
+                EntityProductoPorUsuario listaDeProductos = new EntityProductoPorUsuario();
                 String promo =String.valueOf(cbProductoPromocion.isChecked());
                 String cantidad = etProductoCantidad.getText().toString();
                 String costo = etProductoCosto.getText().toString();
                 int cant =0;
-                BigDecimal sub = new BigDecimal("0");
+                String sub = "";
                 double cost =0;
 
                 if(!cantidad.isEmpty() && !cantidad.equals("")){
@@ -142,7 +142,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
                 }
 
                 if(!etProductoSubtotal.getText().toString().isEmpty() && etProductoSubtotal.getText().toString().length() > 0 ){
-                    sub = new BigDecimal(etProductoSubtotal.getText().toString());
+                    sub = etProductoSubtotal.getText().toString();
                 }
 
 
