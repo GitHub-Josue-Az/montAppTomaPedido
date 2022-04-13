@@ -2,22 +2,21 @@ package com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs;
 
 import com.gob.proyectomontpedidosinicial.core.BasePresenter;
 import com.gob.proyectomontpedidosinicial.core.BaseView;
-import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
+import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public interface PopUpAgregarClientesContract {
+public interface PopUpAgregarProductosContract {
 
-    interface View extends BaseView<PopUpAgregarClientesContract.Presenter> {
+    interface View extends BaseView<PopUpAgregarProductosContract.Presenter> {
 
-        void listaClientes(ArrayList<EntityCliente> clientes, int tipo);
+        void listaProductos(ArrayList<ProductoPorUsuario> clientes);
     }
 
     interface Presenter extends BasePresenter {
 
-        void getListaClientes(int tipo);
+        void getListaProductos();
     }
 
 

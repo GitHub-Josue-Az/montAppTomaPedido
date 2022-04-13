@@ -91,6 +91,12 @@
     <string name="st_buscar_vencimiento_title">Vencimiento</string>
     <string name="menu_nav_cobranzas">Cobranzas</string>
     <string name="st_nav_cobranzas_listado">Lista de cobranzas</string>
+    <string name="tipo_cliente">Tipo de cliente</string>
+    <string name="select_tipo_cliente">Seleccionar un tipo de cliente</string>
+    <string name="tipo_condicion">Tipo de condición de pago</string>
+    <string name="select_direccion">Seleccionar direccion</string>
+    <string name="direccion">Direccion</string>
+    <string name="select_tipo_condicion">Seleccionar tipo de condicion</string>
 
 
 </resources>

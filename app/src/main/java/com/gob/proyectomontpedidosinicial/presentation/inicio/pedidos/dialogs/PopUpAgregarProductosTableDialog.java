@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
+import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.adapters.PedidosAgregarProductosAdapter;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.adapters.AgregarProductosAdapter;
 
@@ -47,7 +48,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
     private BigDecimal subtotal;
     private int posicion;
 
-    public PopUpAgregarProductosTableDialog(Context context, PopUpAgregarProductosTableInterface popUpAgregarProductosTableInterface, ListaDeProductos producto, int position) {
+    public PopUpAgregarProductosTableDialog(Context context, PopUpAgregarProductosTableInterface popUpAgregarProductosTableInterface, ProductoPorUsuario producto, int position) {
         super(context);
         this.mPopUpAgregarProductosTableInterface = popUpAgregarProductosTableInterface;
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -56,7 +57,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
         ButterKnife.bind(this, view);
         mContext = context;
         posicion  = position;
-        tvProductoDialog.setText(producto.getProducto());
+        tvProductoDialog.setText(producto.getNombre_corto());
         etProductoSubtotal.setText("0");
 
           /* Verificar si tienen data y si arrojan error  */
@@ -125,7 +126,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
         switch (view.getId()) {
             case R.id.btn_pedidos_agregar_guardar:
 
-                ListaDeProductos listaDeProductos = new ListaDeProductos();
+                ProductoPorUsuario listaDeProductos = new ProductoPorUsuario();
                 String promo =String.valueOf(cbProductoPromocion.isChecked());
                 String cantidad = etProductoCantidad.getText().toString();
                 String costo = etProductoCosto.getText().toString();
@@ -145,7 +146,7 @@ public class PopUpAgregarProductosTableDialog extends AlertDialog{
                 }
 
 
-                listaDeProductos.setProducto(tvProductoDialog.getText().toString());
+                listaDeProductos.setNombre_corto(tvProductoDialog.getText().toString());
                 listaDeProductos.setCantidad(cant);
                 listaDeProductos.setCosto(cost);
                 listaDeProductos.setSubtotal(sub);

@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 
 public class LoaderViewHold extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.progreso)
+    @BindView(R.id.progresooo)
     ProgressBar progresoIni;
 
     public LoaderViewHold(@NonNull View itemView) {

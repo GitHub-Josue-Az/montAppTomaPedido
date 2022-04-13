@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.LoaderAdapter;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
+import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
 
 import java.util.ArrayList;
@@ -22,15 +23,15 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AgregarProductosAdapter extends LoaderAdapter<ListaDeProductos> {
+public class AgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> {
 
 
     private Context context;
     private SessionManager sessionManager;
     private AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto;
-    private ListaDeProductos listaDeProductos;
+    private ProductoPorUsuario listaDeProductos;
 
-    public AgregarProductosAdapter(ArrayList<ListaDeProductos> listaDeProductos, Context context, AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto) {
+    public AgregarProductosAdapter(ArrayList<ProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceAgregarProducto adapterInterfaceAgregarProducto) {
         super(context);
         setItems(listaDeProductos);
         this.context = context;
@@ -38,14 +39,15 @@ public class AgregarProductosAdapter extends LoaderAdapter<ListaDeProductos> {
         this.adapterInterfaceAgregarProducto = adapterInterfaceAgregarProducto;
     }
 
-    public ArrayList<ListaDeProductos> getItems() {
-        return (ArrayList<ListaDeProductos>) getmItems();
+    public ArrayList<ProductoPorUsuario> getItems() {
+        return (ArrayList<ProductoPorUsuario>) getmItems();
     }
 
 
     @Override
     public long getYourItemId(int position) {
-        return getmItems().get(position).getId();
+        return 0;
+        /*return getmItems().get(position).getId();*/
     }
 
     @Override
@@ -61,8 +63,8 @@ public class AgregarProductosAdapter extends LoaderAdapter<ListaDeProductos> {
         /* Para que no se recicle  */
         holder.setIsRecyclable(false);
 
-        ListaDeProductos listaDeProductos = getItems().get(posi);
-        (((ViewHolder) holder).tvAgregarNombreDialog).setText(listaDeProductos.getProducto());
+        ProductoPorUsuario listaDeProductos = getItems().get(posi);
+        (((ViewHolder) holder).tvAgregarNombreDialog).setText(listaDeProductos.getNombre_corto());
 
         ((ViewHolder) holder).lnAgregarStocks.setOnClickListener(new View.OnClickListener() {
             @Override

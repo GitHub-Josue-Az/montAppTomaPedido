@@ -31,6 +31,7 @@
         android:fullBackupContent="false"
         android:fullBackupOnly="false"
         android:requestLegacyExternalStorage="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.SplashActivity"

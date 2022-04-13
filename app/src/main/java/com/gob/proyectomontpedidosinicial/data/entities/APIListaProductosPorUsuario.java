@@ -31,6 +31,11 @@ public class APIListaProductosPorUsuario<T> implements Serializable {
 
     private String msj;
 
+    private T dataObject;
+
+    public T getDataObject() {
+        return dataObject;
+    }
 
 
     @Override
@@ -39,6 +44,7 @@ public class APIListaProductosPorUsuario<T> implements Serializable {
                 "code=" + code +
                 ", data=" + data +
                 ", msj=" + msj +
+                ", dataObject=" + dataObject +
                 '}';
     }
 }

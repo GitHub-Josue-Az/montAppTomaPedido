@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.LoaderAdapter;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
+import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.PopUpAgregarProductosTableDialog;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.PopUpAgregarProductosTableInterface;
@@ -28,12 +29,12 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProductos> implements  OnClickListListener, PopUpAgregarProductosTableInterface {
+public class PedidosAgregarProductosAdapter extends LoaderAdapter<ProductoPorUsuario> implements  OnClickListListener, PopUpAgregarProductosTableInterface {
 
     private Context context;
     private SessionManager sessionManager;
     private  AdapterInterfaceProductos adapterInterfaceProductos;
-    private ListaDeProductos listaDeProductos;
+    private ProductoPorUsuario listaDeProductos;
     private PopUpAgregarProductosTableDialog showPopUpAgregarProductosTableDialog;
     /*HashMap<Integer, ViewHolder> holderlist;*/
     /*private int pos;*/
@@ -41,7 +42,7 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProduct
 
     private RecyclerView.ViewHolder viewHolderPreferences;
 
-    public PedidosAgregarProductosAdapter(ArrayList<ListaDeProductos> listaDeProductos, Context context, AdapterInterfaceProductos adapterInterfaceProductoss) {
+    public PedidosAgregarProductosAdapter(ArrayList<ProductoPorUsuario> listaDeProductos, Context context, AdapterInterfaceProductos adapterInterfaceProductoss) {
         super(context);
         setItems(listaDeProductos);
         this.context = context;
@@ -50,13 +51,14 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProduct
         this.adapterInterfaceProductos = adapterInterfaceProductoss;
     }
 
-    public ArrayList<ListaDeProductos> getItems() {
-        return (ArrayList<ListaDeProductos>) getmItems();
+    public ArrayList<ProductoPorUsuario> getItems() {
+        return (ArrayList<ProductoPorUsuario>) getmItems();
     }
 
     @Override
     public long getYourItemId(int position) {
-        return getmItems().get(position).getId();
+       return 0;
+        /* return getmItems().get(position).getId();*/
     }
 
     @Override
@@ -74,8 +76,8 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProduct
 
         holder.setIsRecyclable(false);
 
-        ListaDeProductos listaproducts = getItems().get(posi);
-        (((ViewHolder) holder).tvAgregarProductoTable).setText(listaproducts.getProducto());
+        ProductoPorUsuario listaproducts = getItems().get(posi);
+        (((ViewHolder) holder).tvAgregarProductoTable).setText(listaproducts.getNombre_corto());
         (((ViewHolder) holder).tvAgregarCosto).setText(String.valueOf(listaproducts.getCosto()));
         (((ViewHolder) holder).tvAgregarCantidad).setText(String.valueOf(listaproducts.getCantidad()));
 
@@ -127,7 +129,7 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProduct
         /* Pasar la informacion actual de ese listproducto para que lo vea o lo modifique */
 
         /* Pasar la posicion */
-        ListaDeProductos producto = getItems().get(position);
+        ProductoPorUsuario producto = getItems().get(position);
         showPopUpAgregarProductosTableDialog = new PopUpAgregarProductosTableDialog(context, this,producto,position);
         showPopUpAgregarProductosTableDialog.show();
         showPopUpAgregarProductosTableDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -143,7 +145,7 @@ public class PedidosAgregarProductosAdapter extends LoaderAdapter<ListaDeProduct
     }
 
     @Override
-    public void guardarProductoListaDeProductos(ListaDeProductos listaDeProductos,int position) {
+    public void guardarProductoListaDeProductos(ProductoPorUsuario listaDeProductos,int position) {
 
         /*   Midifcar el listado y refrescar  */
         /*ListaDeProductos pro =  getItems().get(position);*/

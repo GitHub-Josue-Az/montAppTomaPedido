@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gob.proyectomontpedidosinicial.R;
+import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeProductos;
+import com.gob.proyectomontpedidosinicial.data.entities.ProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.adapters.AdapterInterfaceAgregarProducto;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.adapters.AgregarProductosAdapter;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.dialogstock.PopUpAgregarProductosStockDialog;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.dialogstock.PopUpAgregarProductosStockInterface;
+import com.gob.proyectomontpedidosinicial.utils.ProgressDialogCustom;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterInterfaceAgregarProducto, PopUpAgregarProductosStockInterface {
+public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterInterfaceAgregarProducto, PopUpAgregarProductosStockInterface,PopUpAgregarProductosContract.View{
 
 
      /*@BindView(R.id.iv_pedidos_productos_dialog_close)
@@ -37,9 +40,11 @@ public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterI
 
     private Context mContext;
     private  PopUpAgregarProductosInterface mPopUpAgregarProductosInterface;
-    private PopUpAgregarClientesContract.Presenter mPresenter;
+    private PopUpAgregarProductosContract.Presenter mPresenter;
 
     private LinearLayoutCompat mline;
+
+    private ProgressDialogCustom mProgressDialogCustom;
 
     /* Recicler */
     private LinearLayoutManager mlinearLayoutManager;
@@ -57,16 +62,19 @@ public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterI
         setView(view);
         ButterKnife.bind(this, view);
         mContext = context;
-        /*mPresenter = new PopUpAgregarClientesPresenter(this,context);
-        mPresenter.getListaClientes();*/
 
-        agregarProductosAdapter = new AgregarProductosAdapter(new ArrayList<ListaDeProductos>(), getContext(), this);
+        mProgressDialogCustom = new ProgressDialogCustom(getContext(), "Cargando...");
+
+        mPresenter = new PopUpAgregarProductosPresenter(this,context);
+        mPresenter.getListaProductos();
+
+        agregarProductosAdapter = new AgregarProductosAdapter(new ArrayList<ProductoPorUsuario>(), getContext(), this);
         mlinearLayoutManager = new LinearLayoutManager(getContext());
         mlinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvAgregarProductosDialog.setAdapter(agregarProductosAdapter);
         rvAgregarProductosDialog.setLayoutManager(mlinearLayoutManager);
 
-        clientesPorAhora();
+        /*clientesPorAhora();*/
     }
 
 
@@ -88,8 +96,11 @@ public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterI
 
     /*  Recycler views INTERFACES */
     @Override
-    public void agregarProducto(ListaDeProductos listaDeProductos) {
-        mPopUpAgregarProductosInterface.agregarProductos(listaDeProductos);
+    public void agregarProducto(ProductoPorUsuario listaDeProductos) {
+
+        if (listaDeProductos != null) {
+            mPopUpAgregarProductosInterface.agregarProductos(listaDeProductos);
+        }
     }
     @Override
     public void showAgregarStocks(RecyclerView.ViewHolder hol) {
@@ -118,7 +129,7 @@ public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterI
     }
 
 
-    private void clientesPorAhora() {
+   /* private void clientesPorAhora() {
 
         ArrayList<ListaDeProductos> listaDeProductos = new ArrayList<>();
 
@@ -139,6 +150,47 @@ public class PopUpAgregarProductosDialog extends AlertDialog implements AdapterI
         listaDeProductos.add(productotres);
 
         agregarProductosAdapter.setItems(listaDeProductos);
+    }*/
+
+
+    @Override
+    public void listaProductos(ArrayList<ProductoPorUsuario> productoPorUsuarios) {
+
+        if (productoPorUsuarios != null){
+            if (productoPorUsuarios.size() != 0){
+                agregarProductosAdapter.setItems(productoPorUsuarios);
+            }
+        }
+
+        setLoadingIndicator(false);
+    }
+
+
+    @Override
+    public void setPresenter(PopUpAgregarProductosContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void setLoadingIndicator(boolean active) {
+
+        if (active) {
+            mProgressDialogCustom.show();
+        } else {
+            if (mProgressDialogCustom.isShowing()) {
+                mProgressDialogCustom.dismiss();
+            }}
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+
     }
 
 }

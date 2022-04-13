@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.LoaderAdapter;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeClientes;
 import com.gob.proyectomontpedidosinicial.data.local.SessionManager;
@@ -23,15 +24,15 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AgregarClienteAdapter extends LoaderAdapter<Cliente> {
+public class AgregarClienteAdapter extends LoaderAdapter<EntityCliente> {
 
 
     private Context context;
     private SessionManager sessionManager;
     private AdapterInterfaceAgregarCliente adapterInterfaceAgregarCliente;
-    private Cliente listaDeClientes;
+    private EntityCliente listaDeClientes;
 
-    public AgregarClienteAdapter(ArrayList<Cliente> listaDeClientes, Context context, AdapterInterfaceAgregarCliente adapterInterfaceAgregarCliente) {
+    public AgregarClienteAdapter(ArrayList<EntityCliente> listaDeClientes, Context context, AdapterInterfaceAgregarCliente adapterInterfaceAgregarCliente) {
         super(context);
         setItems(listaDeClientes);
         this.context = context;
@@ -39,8 +40,8 @@ public class AgregarClienteAdapter extends LoaderAdapter<Cliente> {
         this.adapterInterfaceAgregarCliente = adapterInterfaceAgregarCliente;
     }
 
-    public ArrayList<Cliente> getItems() {
-        return (ArrayList<Cliente>) getmItems();
+    public ArrayList<EntityCliente> getItems() {
+        return (ArrayList<EntityCliente>) getmItems();
     }
 
 
@@ -62,7 +63,7 @@ public class AgregarClienteAdapter extends LoaderAdapter<Cliente> {
         /* Para que no se recicle  */
         holder.setIsRecyclable(false);
 
-        Cliente listaDeClientes = getItems().get(posi);
+        EntityCliente listaDeClientes = getItems().get(posi);
         (((ViewHolder) holder).tvAgregarNombreDialog).setText(listaDeClientes.getRazon_social());
         (((ViewHolder) holder).tvAgregarRucDialog).setText(listaDeClientes.getCoa_cliente());
 

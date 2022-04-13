@@ -2,16 +2,24 @@ package com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Entity;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Update;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.gob.proyectomontpedidosinicial.R;
+import com.gob.proyectomontpedidosinicial.data.db.database.AppDb;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCondicionDePago;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
 import com.gob.proyectomontpedidosinicial.data.entities.ListaDeClientes;
+import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.PedidosAgregarFragment;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.adapters.AdapterInterfaceAgregarCliente;
 import com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos.dialogs.adapters.AgregarClienteAdapter;
 import com.gob.proyectomontpedidosinicial.utils.ProgressDialogCustom;
@@ -25,7 +33,6 @@ import butterknife.OnClick;
 
 public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterInterfaceAgregarCliente,PopUpAgregarClientesContract.View{
 
-
     /* @BindView(R.id.iv_pedidos_agregar_dialog_close)
      ImageViewCompat ivAgregarCloseDialog;*/
     @BindView(R.id.rv_pedidos_agregar_reciclerView_dialog)
@@ -35,6 +42,17 @@ public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterIn
     SwipeRefreshLayout swAgregarClientesDialog;
 
     private ProgressDialogCustom mProgressDialogCustom;
+
+    /* Async Task */
+    private LeerListaDeClientesTask leerListaClientesTask;
+    private InsertListaDeClientesTask insertListaDeClientesTask;
+    private UpdateListaDeClientesTask updateListaDeClientesTask;
+
+    private List<EntityCliente> listadeclientes;
+
+    private static final int TIPO_INSERT = 2;
+    private static final int TIPO_UPDATE = 3;
+    private static final int TIPO_NINGUNO = 1;
 
 
     private Context mContext;
@@ -56,9 +74,12 @@ public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterIn
         mProgressDialogCustom = new ProgressDialogCustom(getContext(), "Cargando...");
 
         mPresenter = new PopUpAgregarClientesPresenter(this,context);
-        mPresenter.getListaClientes();
 
-        agregarClientesAdapter = new AgregarClienteAdapter(new ArrayList<Cliente>(), getContext(), this);
+        leerListaClientesTask = new LeerListaDeClientesTask();
+        leerListaClientesTask.execute();
+        /* mPresenter.getListaClientes(); */
+
+        agregarClientesAdapter = new AgregarClienteAdapter(new ArrayList<EntityCliente>(), getContext(), this);
         mlinearLayoutManager = new LinearLayoutManager(getContext());
         mlinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvAgregarClientesDialog.setAdapter(agregarClientesAdapter);
@@ -80,7 +101,7 @@ public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterIn
 
 
     public void refresarLista() {
-        mPresenter.getListaClientes();
+        mPresenter.getListaClientes(TIPO_UPDATE);
     }
 
     @OnClick({R.id.iv_pedidos_agregar_dialog_close,R.id.rv_pedidos_agregar_cerrar_dialog})
@@ -102,16 +123,82 @@ public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterIn
     }
 
     @Override
-    public void agregarCliente(Cliente clienteSeleccionado) {
-         mPopUpAgregarClientesInterface.agregarClientes(clienteSeleccionado);
+    public void agregarCliente(EntityCliente clienteSeleccionado) {
+        mPopUpAgregarClientesInterface.agregarClientes(clienteSeleccionado);
+    }
+
+    /* TIPODECONDICION ASYNC */
+
+    /*
+     * Llamado del Async para que se ejecute en background
+     *  */
+    private class LeerListaDeClientesTask extends AsyncTask<Void, Void, List<EntityCliente>> {
+
+        @Override
+        protected List<EntityCliente> doInBackground(Void... voids) {
+            listadeclientes = AppDb.getAppDb(getContext().getApplicationContext()).clienteDAO().findAllClientes();
+            return listadeclientes;
+        }
+        @Override
+        protected void onPostExecute(List<EntityCliente> listadeclientes){
+            verificarInformacionListaDeClientes(listadeclientes);
+        }
+    }
+
+
+    /*
+     * Insert y update del Async para que se ejecute en background
+     *  */
+    private class InsertListaDeClientesTask extends AsyncTask<List<EntityCliente>, Void, Void> {
+
+        @Override
+        protected Void doInBackground(List<EntityCliente>... lists) {
+            AppDb.getAppDb(getContext().getApplicationContext()).clienteDAO().insertClientes(lists[0]);
+            return null;
+        }
+    }
+    private class UpdateListaDeClientesTask extends AsyncTask<List<EntityCliente>, Void, Void> {
+        @Override
+        protected Void doInBackground(List<EntityCliente>... lists) {
+            AppDb.getAppDb(getContext().getApplicationContext()).clienteDAO().updateCliente(lists[0]);
+            return null;
+        }
+    }
+    private class DeleteListaDeClientesTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            AppDb.getAppDb(getContext().getApplicationContext()).clienteDAO().deleteAllClientes();
+            return null;
+        }
+    }
+    public void verificarInformacionListaDeClientes(List<EntityCliente> clientes){
+
+        if (clientes != null){
+            if (clientes.size() >0 && !clientes.isEmpty()){
+                ArrayList<EntityCliente> entityListaDeClientesArray = (ArrayList<EntityCliente>) clientes;
+                listaClientes(entityListaDeClientesArray,TIPO_NINGUNO);
+            }else{
+                mPresenter.getListaClientes(TIPO_INSERT);
+            }
+        }else{
+            mPresenter.getListaClientes(TIPO_INSERT);
+        }
     }
 
 
     @Override
-    public void listaClientes(ArrayList<Cliente> clientes) {
+    public void listaClientes(ArrayList<EntityCliente> clientes,int tipo) {
+
+        if (tipo == TIPO_INSERT){
+            insertListaDeClientesTask = new InsertListaDeClientesTask();
+            insertListaDeClientesTask.execute(clientes);
+        }else if (tipo == TIPO_UPDATE){
+            updateListaDeClientesTask = new UpdateListaDeClientesTask();
+            updateListaDeClientesTask.execute(clientes);
+        }
+
         agregarClientesAdapter.setItems(clientes);
     }
-
 
     @Override
     public void setPresenter(PopUpAgregarClientesContract.Presenter presenter) {
@@ -168,6 +255,4 @@ public class PopUpAgregarClientesDialog extends AlertDialog implements AdapterIn
         agregarClientesAdapter.setItems(listaDeClientes);
 
     }*/
-
-
-}
+    }

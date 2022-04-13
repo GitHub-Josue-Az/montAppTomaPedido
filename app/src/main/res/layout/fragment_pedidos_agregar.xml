@@ -182,15 +182,15 @@
                         <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/sp_pedidos_agregar_direcciones"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="28dp"
                             android:background="@drawable/border_spinner"
                             android:overlapAnchor="false"
                             android:padding="3dp"
                             android:spinnerMode="dropdown" />
 
                         <RelativeLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25sp"
+                            android:layout_width="20dp"
+                            android:layout_height="20sp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="10dp"
@@ -225,15 +225,15 @@
                         <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/sp_pedidos_agregar_condicion"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp"
+                            android:layout_height="28dp"
                             android:background="@drawable/border_spinner"
                             android:overlapAnchor="false"
+                            android:padding="3dp"
                             android:spinnerMode="dropdown" />
 
                         <RelativeLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25sp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="10dp"
@@ -268,26 +268,24 @@
                         <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/sp_pedidos_agregar_tipocliente"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp"
+                            android:layout_height="28dp"
                             android:background="@drawable/border_spinner"
                             android:overlapAnchor="false"
+                            android:padding="3dp"
                             android:spinnerMode="dropdown" />
 
                         <RelativeLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25sp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="10dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto">
+                            android:layout_marginEnd="10dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerInParent="true"
-                                android:layout_centerVertical="true"
                                 android:layout_gravity="center"
                                 android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
