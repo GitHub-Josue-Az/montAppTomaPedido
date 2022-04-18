@@ -486,6 +486,7 @@
                             android:layout_width="35dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:checked="false"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"/>
                         <TextView

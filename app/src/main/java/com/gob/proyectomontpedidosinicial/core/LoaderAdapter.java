@@ -64,9 +64,9 @@ public abstract class LoaderAdapter<T> extends RecyclerView.Adapter<RecyclerView
         if (viewHolder instanceof LoaderViewHold) {
             LoaderViewHold loaderViewHol = (LoaderViewHold) viewHolder;
             if (showLoader) {
-                loaderViewHol.progresoIni.setVisibility(View.VISIBLE);
+                loaderViewHol.progresoIne.setVisibility(View.VISIBLE);
             } else {
-                loaderViewHol.progresoIni.setVisibility(View.GONE);
+                loaderViewHol.progresoIne.setVisibility(View.GONE);
             }
             return;
         }

@@ -94,9 +94,13 @@
     <string name="tipo_cliente">Tipo de cliente</string>
     <string name="select_tipo_cliente">Seleccionar un tipo de cliente</string>
     <string name="tipo_condicion">Tipo de condición de pago</string>
-    <string name="select_direccion">Seleccionar direccion</string>
+    <string name="select_direccion">Seleccionar dirección</string>
     <string name="direccion">Direccion</string>
     <string name="select_tipo_condicion">Seleccionar tipo de condicion</string>
+    <string name="direccion_vacia">No se encontraron direcciones del cliente seleccionado</string>
+    <string name="error_numero_productos">El pedido debe contener al menos un pedido</string>
+    <string name="error_fecha">Debe seleccionar una fecha</string>
+    <string name="error_permisos_localizacion">Debe habilitar el GPS para realizar un pedido</string>
 
 
 </resources>

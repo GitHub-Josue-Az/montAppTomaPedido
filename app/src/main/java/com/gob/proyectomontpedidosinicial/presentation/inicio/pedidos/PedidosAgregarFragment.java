@@ -1,10 +1,16 @@
 package com.gob.proyectomontpedidosinicial.presentation.inicio.pedidos;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,13 +27,22 @@ import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.ColumnInfo;
+import androidx.room.PrimaryKey;
 
 import com.gob.proyectomontpedidosinicial.R;
 import com.gob.proyectomontpedidosinicial.core.BaseFragment;
@@ -35,6 +50,7 @@ import com.gob.proyectomontpedidosinicial.data.db.database.AppDb;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCondicionDePago;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityDireccionCliente;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityPedidoProducto;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityTipoDeCliente;
 import com.gob.proyectomontpedidosinicial.data.entities.Cliente;
@@ -69,12 +85,26 @@ public class PedidosAgregarFragment extends BaseFragment
         implements PopUpAgregarClientesInterface,
         PopUpAgregarProductosInterface,
         AdapterInterfaceProductos,
-        PedidosAgregarContract.View{
+        PedidosAgregarContract.View, LocationListener {
 
     private static final String TAG = PedidosAgregarFragment.class.getSimpleName();
     private static final int TIPO_INSERT = 2;
     private static final int TIPO_UPDATE = 3;
     private static final int TIPO_NINGUNO = 1;
+    private static final String V_TRUE = "TRUE";
+    private static final String V_FALSE = "FALSE";
+
+    /* PERMISOS */
+    final String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
+
+    private boolean permissionGranted=false;
+    private boolean permissionGranted1=false;
+
+    private ActivityResultContracts.RequestMultiplePermissions multiplePermissionsContract;
+    private ActivityResultLauncher<String[]> multiplePermissionLauncher;
 
 
     private String type;
@@ -126,9 +156,18 @@ public class PedidosAgregarFragment extends BaseFragment
     LinearLayoutCompat lnAgregarCargarProductos;
     @BindView(R.id.et_pedidos_agregar_fecha)
     AppCompatEditText etAgregarFecha;
-
+    @BindView(R.id.edit_descripcion_problema)
+    AppCompatEditText etObservaciones;
     @BindView(R.id.et_pedidos_agregar_total)
     AppCompatEditText etAgregarTotal;
+
+    /* CHECKBOX */
+    @BindView(R.id.cb_pedidos_agregar_camioneta)
+    AppCompatCheckBox cbAgregarCamioneta;
+
+    /* Registrar */
+    @BindView(R.id.btn_pedidos_agregar_registrar)
+    AppCompatButton btnPedidosRegistrar;
 
 
     /*  Recycler  */
@@ -149,7 +188,6 @@ public class PedidosAgregarFragment extends BaseFragment
     final int anio = c.get(Calendar.YEAR);
 
 
-
     private ArrayList<String> data = new ArrayList<String>();
     private PopUpAgregarClientesDialog showPopUpAgregarClientesDialog;
     private PopUpAgregarProductosDialog showPopUpAgregarProductosDialog;
@@ -164,14 +202,22 @@ public class PedidosAgregarFragment extends BaseFragment
 
 
     /* Tipo de cliente */
-    private  String itemPositionTipoCliente;
+    private String itemPositionTipoCliente;
     private String direccionSeleccionada;
-    private  String itemPositionTipoCondicion;
-    private  String itemPositionDireccionByCliente;
-    private  String itemPositionDireccion;
+    private String itemPositionTipoCondicion = "";
+    private String itemPositionDireccionByCliente = "";
+    private String itemPositionDireccion = "";
     private String condicionSeleccionada;
     private String tipoclienteSeleccionada;
 
+    /* Variables */
+    private String altitud="";
+    private String longitud="";
+    private String stAgregarCamioneta = "";
+    private String stFechaEntrega = "";
+    private String stObservaciones = "";
+
+    /* Cliente */
     private String clienteid;
 
 
@@ -203,6 +249,14 @@ public class PedidosAgregarFragment extends BaseFragment
     private List<EntityDireccionCliente> listdireccionByIdCliente;
     private List<EntityCondicionDePago> listcondicionDePago;
 
+    /* Pedido */
+    private EntityPedidoProducto entityPedidoProducto;
+
+
+    /* LOCALIZACIÓN */
+    private LocationManager locationManager;
+    private String provider;
+
 
     public PedidosAgregarFragment() {
     }
@@ -210,10 +264,11 @@ public class PedidosAgregarFragment extends BaseFragment
 
     public interface changeFragmentActivity {
         void gotoInicioFragmentAgregar();
+
         void gotoBackAgregar();
     }
 
-    public interface pedidosFragmentGuardarProducto{
+    public interface pedidosFragmentGuardarProducto {
         void guardarProductoAgregar();
     }
 
@@ -227,14 +282,19 @@ public class PedidosAgregarFragment extends BaseFragment
 
         mSessionManager = new SessionManager(getContext());
 
-        subtotalcero  = new BigDecimal(0);
-        subtotalceroo  = new BigDecimal(0.0);
+        subtotalcero = new BigDecimal(0);
+        subtotalceroo = new BigDecimal(0.0);
         subtotalGeneral = new BigDecimal(0);
+
+        /* Valor por defecto esta desactivado el checkbox */
+        stAgregarCamioneta = V_FALSE;
+
+        /* Solicitar permiso de localización y validación */
+        permisosyvalidaciones();
 
 
         /* Primero hacer la verificación de la información en el room */
         /* Consultar base de datos ROOM */
-
         leerTipoDeCondicionTask = new LeerTipoDeCondicionTask();
         leerTipoDeCondicionTask.execute();
 
@@ -243,6 +303,9 @@ public class PedidosAgregarFragment extends BaseFragment
 
         leerListaDireccionTask = new LeerListaDireccionTask();
         leerListaDireccionTask.execute();
+
+
+        entityPedidoProducto = new EntityPedidoProducto();
 
 
        /* deleteTipoDeClientesTask = new DeleteTipoDeClientesTask();
@@ -254,6 +317,100 @@ public class PedidosAgregarFragment extends BaseFragment
 
     }
 
+    public void permisosyvalidaciones(){
+
+        if (ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            /*Toast.makeText(getContext(),getResources().getString(R.string.error_permisos_localizacion),Toast.LENGTH_LONG).show();*/
+            /*multiplePermissionsContract = new ActivityResultContracts.RequestMultiplePermissions();
+            multiplePermissionLauncher = registerForActivityResult(multiplePermissionsContract, isGranted -> {
+                if (isGranted.containsValue(false)) {
+                    multiplePermissionLauncher.launch(PERMISSIONS);
+                }
+            });
+            askPermissions(multiplePermissionLauncher);*/
+            /*int permissionCheck = ContextCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION);
+            int permissionCheck1 = ContextCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION);
+
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED ) {
+                mPermissionResult.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+            if(permissionCheck1 != PackageManager.PERMISSION_GRANTED) {
+                mPermissionResulttwo.launch(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }*/
+            mPermissionResult.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+        }else{
+
+            /* LOCALIZACIÓN INSTANCIACION */
+            locationManager = (LocationManager) getContext().getSystemService(getContext().getApplicationContext().LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            provider = locationManager.getBestProvider(criteria, false);
+
+            Location locations = locationManager.getLastKnownLocation(provider);
+
+            if (locations !=null){
+                    onLocationChanged(locations);
+                altitud = String.valueOf(locations.getAltitude());
+                longitud = String.valueOf(locations.getLongitude());
+                entityPedidoProducto.setUbicacion_actual(altitud+" - "+longitud);
+            }else{
+                Toast.makeText(getContext(),"Habilitar el GPS del dispositivo",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+    }
+
+    private ActivityResultLauncher<String> mPermissionResult = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result) {
+                        mPermissionResulttwo.launch(Manifest.permission.ACCESS_COARSE_LOCATION);
+                    } else {
+                        Toast.makeText(getContext(),"Debes conceder permisos para realizar un pedido",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+    private ActivityResultLauncher<String> mPermissionResulttwo = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result) {
+                        Toast.makeText(getContext(),"Permisos concedidos",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(),"Debes conceder permisos para realizar un pedido",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+   /* private void askPermissions(ActivityResultLauncher<String[]> multiplePermissionLauncher) {
+        if (!hasPermissions(PERMISSIONS)) {
+            multiplePermissionLauncher.launch(PERMISSIONS);
+        }
+    }
+
+    private boolean hasPermissions(String[] permissions) {
+        if (permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(getContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }*/
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -262,6 +419,8 @@ public class PedidosAgregarFragment extends BaseFragment
         ButterKnife.bind(this, root);
 
         mProgressDialogCustom = new ProgressDialogCustom(getContext(), "Cargando...");
+
+        etAgregarTotal.setText(String.valueOf(subtotalGeneral));
 
         mPresenter = new PedidosAgregarPresenter(this,getContext());
 
@@ -275,6 +434,11 @@ public class PedidosAgregarFragment extends BaseFragment
         lnAgregarCargarProductos.setOnClickListener(view -> showPopUpAgregarCargarProductos());
         /* Mostrar fecha */
         etAgregarFecha.setOnClickListener(view -> showPopUpAgregarFecha());
+        /* Registrar pedido */
+        btnPedidosRegistrar.setOnClickListener(view -> registrarPedido());
+
+
+        cbAgregarCamioneta.setOnClickListener(view -> agregarCamioneta());
 
 
         /*  TRAER ESTO EN CASO NO HAYA DATA EN SU ROOM */
@@ -292,12 +456,14 @@ public class PedidosAgregarFragment extends BaseFragment
         return root;
     }
 
-
-   /* private void generateListContent() {
-        for(int i = 0; i < 20; i++) {
-            data.add("This is row number " + i);
+    public void agregarCamioneta(){
+        if(stAgregarCamioneta.equals(V_TRUE)){
+            stAgregarCamioneta = V_FALSE;
+        }else {
+            stAgregarCamioneta = V_TRUE;
         }
-    }*/
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -307,6 +473,7 @@ public class PedidosAgregarFragment extends BaseFragment
     }
 
 
+    /* CLIENTES*/
     private void showPopUpAgregarClientes() {
         lnAgregarClientes.setEnabled(false);
         showPopUpAgregarClientesDialog = new PopUpAgregarClientesDialog(getContext(), this);
@@ -314,6 +481,34 @@ public class PedidosAgregarFragment extends BaseFragment
         showPopUpAgregarClientesDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         showPopUpAgregarClientesDialog.setCancelable(false);
     }
+    /* Al pulsar agregar */
+    @Override
+    public void agregarClientes(EntityCliente listaDeClientes) {
+
+        lnAgregarClientes.setEnabled(true);
+
+        etAgregarNombreCliente.setText(listaDeClientes.getRazon_social());
+        etAgregarDocumentoCliente.setText(listaDeClientes.getCoa_cliente());
+
+        showPopUpAgregarClientesDialog.dismiss();
+
+        /* ID del cliente para sacar sus direcciones */
+        clienteid = listaDeClientes.getId_cliente();
+
+        /* Datos para el EntityPedidoProducto */
+        entityPedidoProducto.setId_cliente(listaDeClientes.getId_cliente());
+        entityPedidoProducto.setCoa_cliente(listaDeClientes.getCoa_cliente());
+        entityPedidoProducto.setCodigo_vendedor(listaDeClientes.getCodigo_vendedor());
+
+
+        /* Solicitar al room por idCliente */
+        leerListaDireccionByIdClienteTask = new LeerListaDireccionByIdClienteTask();
+        leerListaDireccionByIdClienteTask.execute(clienteid);
+
+    }
+
+
+
 
     private void showPopUpAgregarCargarProductos() {
         lnAgregarCargarProductos.setEnabled(false);
@@ -403,23 +598,6 @@ public class PedidosAgregarFragment extends BaseFragment
     }
 
 
-    @Override
-    public void agregarClientes(EntityCliente listaDeClientes) {
-
-        lnAgregarClientes.setEnabled(true);
-        etAgregarNombreCliente.setText(listaDeClientes.getRazon_social());
-        etAgregarDocumentoCliente.setText(listaDeClientes.getCoa_cliente());
-        showPopUpAgregarClientesDialog.dismiss();
-        clienteid =  listaDeClientes.getId_cliente();
-
-        /* Solicitar al room por idCliente */
-        leerListaDireccionByIdClienteTask = new LeerListaDireccionByIdClienteTask();
-        leerListaDireccionByIdClienteTask.execute(clienteid);
-
-    }
-
-
-
 
 
     /*
@@ -499,6 +677,7 @@ public class PedidosAgregarFragment extends BaseFragment
     @Override
     public void listaDeTipoDeClientes(ArrayList<EntityTipoDeCliente> tipoDeClientes,int tipoAsync) {
 
+        itemPositionTipoCliente = "";
 
         if (tipoAsync == TIPO_INSERT){
             Log.e("Clientes", "Cantidad "+ +tipoDeClientes.size() +" --- Clientes previa insercion "+tipoDeClientes.toString());
@@ -512,7 +691,7 @@ public class PedidosAgregarFragment extends BaseFragment
         List<EntityTipoDeCliente> tipos = tipoDeClientes;
 
         List<String> listDocumento = new ArrayList<String>();
-        listDocumento.add(getResources().getString(R.string.tipo_cliente));
+        listDocumento.add(getResources().getString(R.string.select_tipo_cliente));
 
         for (int i = 0; i < tipos.size(); i++) {
             listDocumento.add(tipos.get(i).getNombre_tipo_cliente());
@@ -529,15 +708,17 @@ public class PedidosAgregarFragment extends BaseFragment
 
                 if (position > 0) {
                     itemPositionTipoCliente = tipos.get(position - 1).getId_tipo_cliente();
+                }else{
+                    itemPositionTipoCliente = "";
                 }
 
-                typecliente = spAgregarTipo.getItemAtPosition(position).toString();
+               /* typecliente = spAgregarTipo.getItemAtPosition(position).toString();
 
                 if (!typecliente.equals(getResources().getString(R.string.tipo_cliente))) {
                     tipoclienteSeleccionada = typecliente;
                 } else {
                     tipoclienteSeleccionada = "";
-                }
+                }*/
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -610,6 +791,8 @@ public class PedidosAgregarFragment extends BaseFragment
     @Override
     public void listaTipoDeCondicion(ArrayList<EntityCondicionDePago> tipoDeCondicion,int tipoAsy) {
 
+        itemPositionTipoCondicion = "";
+
         if (tipoAsy == TIPO_INSERT){
             Log.e("Condicion", "Cantidad "+ +tipoDeCondicion.size() +" --- Clientes previa insercion "+tipoDeCondicion.toString());
             insertTipoDeCondicionTask = new InsertTipoDeCondicionTask();
@@ -622,7 +805,7 @@ public class PedidosAgregarFragment extends BaseFragment
         List<EntityCondicionDePago> tipos = tipoDeCondicion;
 
         List<String> listCondicion = new ArrayList<String>();
-        listCondicion.add(getResources().getString(R.string.tipo_condicion));
+        listCondicion.add(getResources().getString(R.string.select_tipo_condicion));
 
         for (int i = 0; i < tipos.size(); i++) {
             listCondicion.add(tipos.get(i).getNombre_condicion());
@@ -639,15 +822,17 @@ public class PedidosAgregarFragment extends BaseFragment
 
                 if (position > 0) {
                     itemPositionTipoCondicion = tipos.get(position - 1).getId_condicion();
+                }else{
+                    itemPositionTipoCondicion = "";
                 }
 
-                type = spAgregarCondicion.getItemAtPosition(position).toString();
+                /*type = spAgregarCondicion.getItemAtPosition(position).toString();
 
                 if (!type.equals(getResources().getString(R.string.tipo_condicion))) {
                     condicionSeleccionada = type;
                 } else {
                     condicionSeleccionada = "";
-                }
+                }*/
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -688,7 +873,6 @@ public class PedidosAgregarFragment extends BaseFragment
         @Override
         protected void onPostExecute(List<EntityDireccionCliente> direccionClientes){
             Log.e("DireccionByID2", String.valueOf(direccionClientes));
-
             verificarInformacionDireccionByIdCliente(direccionClientes);
         }
     }
@@ -740,6 +924,8 @@ public class PedidosAgregarFragment extends BaseFragment
 
     public void verificarInformacionDireccionByIdCliente(List<EntityDireccionCliente> direccionCliente){
 
+        itemPositionDireccion = "";
+
         if (direccionCliente != null){
             if (direccionCliente.size() >0 && !direccionCliente.isEmpty()){
 
@@ -763,16 +949,19 @@ public class PedidosAgregarFragment extends BaseFragment
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                         if (position > 0) {
-                            itemPositionTipoCondicion = tipos.get(position - 1).getId_direccion();
+                            itemPositionDireccion = tipos.get(position - 1).getId_direccion();
+                        }else{
+                            itemPositionDireccion = "";
                         }
 
-                        typeDireccion = spAgregarDirecciones.getItemAtPosition(position).toString();
+                        /*typeDireccion = spAgregarDirecciones.getItemAtPosition(position).toString();
 
                         if (!typeDireccion.equals(getResources().getString(R.string.select_direccion))) {
                             direccionSeleccionada = typeDireccion;
-                        } else {
+                          }else{
                             direccionSeleccionada = "";
-                        }
+                        }*/
+
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -781,10 +970,10 @@ public class PedidosAgregarFragment extends BaseFragment
 
 
             }else{
-                Toast.makeText(getContext(), "No se encontraron direcciones el cliente seleccionado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.direccion_vacia), Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(getContext(), "No se encontraron direcciones el cliente seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(R.string.direccion_vacia), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -804,7 +993,6 @@ public class PedidosAgregarFragment extends BaseFragment
             updateListaDireccionTask.execute(direccionClientes);
         }
 
-        Toast.makeText(getContext(), "Count "+direccionClientes.size(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -825,6 +1013,67 @@ public class PedidosAgregarFragment extends BaseFragment
 
 
 
+    /* Registrar pedido */
+    public void registrarPedido(){
+
+        /* Llamar a toda la información */
+        permisosyvalidaciones();
+
+       if (itemPositionTipoCondicion.length() <=0 || itemPositionTipoCondicion.isEmpty()){
+            Toast.makeText(getContext(), getResources().getString(R.string.select_tipo_condicion) ,Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (itemPositionTipoCliente.length() <=0 || itemPositionTipoCliente.isEmpty()){
+            Toast.makeText(getContext(),getResources().getString(R.string.select_tipo_cliente),Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (itemPositionDireccion.length() <=0 || itemPositionDireccion.isEmpty()){
+            Toast.makeText(getContext(),getResources().getString(R.string.select_direccion),Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(pedidosAgregarProductosAdapter.getItems().size()== 0 || pedidosAgregarProductosAdapter.getItems().isEmpty()){
+            Toast.makeText(getContext(),  getResources().getString(R.string.error_numero_productos),Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (etAgregarFecha.getText().toString() != null){
+            if(etAgregarFecha.getText().toString().isEmpty()){
+                Toast.makeText(getContext(),  getResources().getString(R.string.error_fecha),Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (etObservaciones.getText().toString() != null){
+            if(!etObservaciones.getText().toString().isEmpty()){
+               stObservaciones = etObservaciones.getText().toString();
+            }
+        }
+
+        List<EntityProductoPorUsuario> listproductosUsuario = pedidosAgregarProductosAdapter.getItems();
+        entityPedidoProducto.setId_direccion(itemPositionDireccion);
+        entityPedidoProducto.setId_tipo_cliente(itemPositionTipoCliente);
+        entityPedidoProducto.setId_condicion(itemPositionTipoCondicion);
+        entityPedidoProducto.setTotal(String.valueOf(subtotalGeneral));
+        entityPedidoProducto.setDespacho(stAgregarCamioneta);
+        entityPedidoProducto.setFecha_entrega(stFechaEntrega);
+        entityPedidoProducto.setObservaciones(stObservaciones);
+        entityPedidoProducto.setEntityProductoPorUsuario(listproductosUsuario);
+
+
+        Toast.makeText(getContext(), "Pedido "+entityPedidoProducto.toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
+    }
+    @Override
+    public void onFlushComplete(int requestCode) {}
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {}
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {}
 
 
 

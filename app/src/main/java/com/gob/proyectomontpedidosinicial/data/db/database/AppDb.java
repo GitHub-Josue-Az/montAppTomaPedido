@@ -7,10 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.gob.proyectomontpedidosinicial.data.constans.Constans;
+import com.gob.proyectomontpedidosinicial.data.db.converters.EntityProductoPorUsuarioConverter;
 import com.gob.proyectomontpedidosinicial.data.db.dao.ClienteDAO;
 import com.gob.proyectomontpedidosinicial.data.db.dao.CondicionDePagoDAO;
 import com.gob.proyectomontpedidosinicial.data.db.dao.DireccionClienteDAO;
@@ -21,11 +23,13 @@ import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCliente;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityCondicionDePago;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityDireccionCliente;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityLoginUsuarioPost;
+import com.gob.proyectomontpedidosinicial.data.db.entity.EntityPedidoProducto;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityProductoPorUsuario;
 import com.gob.proyectomontpedidosinicial.data.db.entity.EntityTipoDeCliente;
 
 @Database(entities = {EntityCliente.class, EntityCondicionDePago.class, EntityDireccionCliente.class,
-        EntityTipoDeCliente.class, EntityProductoPorUsuario.class, EntityLoginUsuarioPost.class}, version = 4)
+        EntityTipoDeCliente.class, EntityProductoPorUsuario.class, EntityLoginUsuarioPost.class, EntityPedidoProducto.class}, version = 5)
+@TypeConverters({EntityProductoPorUsuarioConverter.class})
 public abstract class AppDb extends RoomDatabase {
 
     private static AppDb INSTANCE;
@@ -44,6 +48,7 @@ public abstract class AppDb extends RoomDatabase {
                     .addMigrations(MIGRATION_1_2)
                     .addMigrations(MIGRATION_2_3)
                     .addMigrations(MIGRATION_3_4)
+                    .addMigrations(MIGRATION_4_5)
                     .build();
         }
         return INSTANCE;
@@ -87,6 +92,15 @@ database.execSQL("CREATE TABLE entitycliente(uid INTEGER PRIMARY KEY NOT NULL,di
         }
     };
 
+    static final Migration MIGRATION_4_5 = new Migration(4,5) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+
+database.execSQL("CREATE TABLE entitypedidoproducto(uid INTEGER PRIMARY KEY NOT NULL,id_cliente TEXT,coa_cliente TEXT,codigo_vendedor TEXT,id_direccion TEXT,id_condicion TEXT,id_tipo_cliente TEXT,total TEXT,despacho TEXT,fecha_entrega TEXT,observaciones TEXT,entityProductoPorUsuario TEXT,fecha_del_dispositivo TEXT,ubicacion_actual TEXT)");
+
+
+        }
+    };
 
 
     /*

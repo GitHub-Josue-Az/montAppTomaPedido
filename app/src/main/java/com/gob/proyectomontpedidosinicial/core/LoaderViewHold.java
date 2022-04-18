@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 public class LoaderViewHold extends RecyclerView.ViewHolder {
 
     @BindView(R.id.progresooo)
-    ProgressBar progresoIni;
+    ProgressBar progresoIne;
 
     public LoaderViewHold(@NonNull View itemView) {
         super(itemView);

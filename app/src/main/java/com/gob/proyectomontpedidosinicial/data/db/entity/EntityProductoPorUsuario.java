@@ -137,4 +137,21 @@ public class EntityProductoPorUsuario implements Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "EntityProductoPorUsuario{" +
+                "productouid=" + productouid +
+                ", estado='" + estado + '\'' +
+                ", fecha_creacion='" + fecha_creacion + '\'' +
+                ", fecha_update='" + fecha_update + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", nombre_corto='" + nombre_corto + '\'' +
+                ", nombre_completo='" + nombre_completo + '\'' +
+                ", id_producto='" + id_producto + '\'' +
+                ", subtotal='" + subtotal + '\'' +
+                ", promocion='" + promocion + '\'' +
+                ", costo=" + costo +
+                ", cantidad=" + cantidad +
+                '}';
+    }
 }
